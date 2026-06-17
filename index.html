@@ -237,7 +237,7 @@
     <section id="utama" class="relative w-full h-screen flex items-center justify-center overflow-hidden bg-slate-950">
         <!-- Background Banner Image -->
         <div class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-700" style="background-image: url('Gemini_Generated_Image_7f8apf7f8apf7f8a.png');"></div>
-        <!-- Dark Overlay Separuh Lut Sinar -->
+        <!-- Dark Overlay Separuh Lut S Sinar -->
         <div class="absolute inset-0 bg-black/40"></div>
         
         <!-- Glassmorphism Card Content (Centered) -->
@@ -497,7 +497,7 @@
                             Bagaimanakah teknologi elektronik mengubah gaya hidup harian kita? Lihat contoh aplikasi di sekeliling anda.
                         </p>
                         <button onclick="openModal('aplikasi-modal')" class="w-full py-2 bg-neonPurple/20 hover:bg-neonPurple/40 text-neonPurple hover:text-white rounded-xl text-xs font-semibold tracking-wider transition-all">
-                            LIHAT CONTAK APLIKASI <i class="fa-solid fa-display ml-1"></i>
+                            LIHAT CONTOH APLIKASI <i class="fa-solid fa-display ml-1"></i>
                         </button>
                     </div>
                     <span class="text-xs text-neonPurple font-semibold uppercase tracking-wider mt-4">Topik 6 • Aplikasi Realiti</span>
@@ -715,7 +715,7 @@
                 <p class="text-slate-400 max-w-2xl mx-auto">Main game kuiz RBT yang menarik ini untuk menguji sejauh mana anda telah menguasai Reka Bentuk Elektronik!</p>
             </div>
 
-            <!-- KAD BAHARU: CABARAN KUIZ ELEKTRONIK INTERAKTIF -->
+            <!-- KAD CABARAN KUIZ ELEKTRONIK INTERAKTIF -->
             <div class="glass-card rounded-3xl p-6 md:p-10 border border-slate-800 shadow-glass mb-12 relative overflow-hidden bg-cover bg-center transition-all duration-300" style="background-image: radial-gradient(circle at top right, rgba(139, 92, 246, 0.15), transparent 60%);">
                 <!-- Background Decorative Circuit Lines (SVG) -->
                 <div class="absolute inset-0 opacity-15 pointer-events-none">
@@ -949,7 +949,7 @@
         </div>
         <!-- Scrollable Image Container -->
         <div class="w-full h-full flex items-center justify-center overflow-auto p-4 md:p-8">
-            <img id="modal-infographic-img" src="https://muhdwafi831-dotcom.github.io/BIJAK-ELEKTRONIK/infografik.png" alt="Infografik Komponen Elektronik Asas Fullscreen" class="max-w-full max-h-full object-contain rounded-xl shadow-2xl transition-transform duration-300 ease-out cursor-zoom-in" onclick="toggleZoom(event)">
+            <img id="modal-infographic-img" src="infografik.png" alt="Infografik Komponen Elektronik Asas Fullscreen" class="max-w-full max-h-full object-contain rounded-xl shadow-2xl transition-transform duration-300 ease-out cursor-zoom-in" onclick="toggleZoom(event)">
         </div>
     </div>
 
@@ -1005,42 +1005,175 @@
     </div>
 
 
-    <!-- MODAL 3: Aplikasi Elektronik Dalam Kehidupan -->
+    <!-- UPGRADED MODAL 3: Aplikasi Elektronik Dalam Kehidupan Seharian (STEM-Oriented) -->
     <div id="aplikasi-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
-        <div class="glass-card max-w-4xl w-full rounded-2xl overflow-hidden border border-slate-800 flex flex-col max-h-[85vh]">
+        <div class="glass-card max-w-4xl w-full rounded-2xl overflow-hidden border border-slate-800 flex flex-col max-h-[90vh] shadow-glowingHotspot animate-fade-in-up">
+            <!-- Modal Header -->
             <div class="p-6 bg-slate-950 flex justify-between items-center border-b border-slate-800">
-                <h3 class="font-orbitron font-bold text-lg text-neonBlue"><i class="fa-solid fa-display mr-2"></i> Aplikasi Elektronik Kehidupan Seharian</h3>
-                <button onclick="closeModal('aplikasi-modal')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-times text-xl"></i></button>
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-neonBlue/10 flex items-center justify-center text-neonBlue text-lg">
+                        <i class="fa-solid fa-display"></i>
+                    </div>
+                    <h3 class="font-orbitron font-extrabold text-xl text-transparent bg-clip-text bg-gradient-to-r from-neonBlue to-neonPurple">
+                        🌐 Aplikasi Elektronik Kehidupan Seharian
+                    </h3>
+                </div>
+                <button onclick="closeModal('aplikasi-modal')" class="text-slate-400 hover:text-white bg-slate-900 hover:bg-neonPurple/20 p-2.5 rounded-xl border border-slate-800 transition-all">
+                    <i class="fa-solid fa-times text-lg"></i>
+                </button>
             </div>
-            <div class="p-6 overflow-y-auto space-y-6">
+            
+            <!-- Modal Body Scrollable Content -->
+            <div class="p-6 md:p-8 overflow-y-auto space-y-6 max-h-[75vh]">
                 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Hero Infographic Utama (Fokus Pembelajaran) -->
+                <div class="relative overflow-hidden rounded-2xl border border-neonBlue/40 shadow-neonBlue/20 group">
+                    <img src="aplikasi.png" alt="Visual Aplikasi Elektronik Kehidupan Seharian" class="w-full h-auto object-cover transform group-hover:scale-[1.015] transition-transform duration-500 rounded-2xl">
+                    <div class="absolute inset-0 bg-gradient-to-t from-darkBg/60 to-transparent pointer-events-none"></div>
+                </div>
+
+                <!-- Penerangan Ringkas -->
+                <p class="text-slate-300 text-sm md:text-base leading-relaxed bg-slate-900/30 p-5 rounded-2xl border border-slate-850">
+                    Elektronik memainkan peranan penting dalam kehidupan moden. Teknologi seperti mikropengawal dan mikroprosesor digunakan untuk mengawal, memproses data, dan mengautomasikan pelbagai sistem bagi meningkatkan keselamatan, kecekapan, dan keselesaan manusia.
+                </p>
+
+                <!-- Petunjuk Interaktif -->
+                <p class="text-xs text-center text-neonCyan font-bold flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-lightbulb animate-bounce text-neonBlue text-sm"></i>
+                    <span>💡 Klik setiap kad untuk mengetahui bagaimana elektronik digunakan dalam kehidupan sebenar.</span>
+                </p>
+
+                <!-- Senarai Kad Interaktif Expandable -->
+                <div class="space-y-4">
                     
-                    <!-- Smart Home -->
-                    <div class="p-5 rounded-2xl bg-slate-900/50 border border-slate-800 text-center space-y-3">
-                        <div class="w-12 h-12 rounded-full bg-neonBlue/10 flex items-center justify-center text-neonBlue mx-auto">
-                            <i class="fa-solid fa-house-laptop text-xl"></i>
+                    <!-- Kad 1: Rumah Pintar -->
+                    <div class="border border-slate-800 rounded-2xl bg-slate-900/40 overflow-hidden transition-all duration-300 hover:border-neonBlue/50">
+                        <button onclick="toggleAppCard('app-card-1')" class="w-full p-5 flex items-center justify-between text-left focus:outline-none hover:bg-slate-900/20 transition-colors">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 rounded-xl bg-neonBlue/10 flex items-center justify-center text-neonBlue text-lg">
+                                    <i class="fa-solid fa-house-signal"></i>
+                                </div>
+                                <h4 class="font-orbitron font-extrabold text-sm md:text-base text-slate-200">🏠 Rumah Pintar (Smart Home)</h4>
+                            </div>
+                            <i id="app-card-1-chevron" class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-350"></i>
+                        </button>
+                        <div id="app-card-1-content" class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out bg-slate-950/40">
+                            <div class="p-5 border-t border-slate-850 space-y-4">
+                                <p class="text-xs md:text-sm text-slate-400">
+                                    Rumah pintar menggunakan mikropengawal untuk mengawal lampu, penghawa dingin, kamera keselamatan, sistem penggera, dan peranti IoT melalui telefon pintar.
+                                </p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+                                    <div class="text-xs text-emerald-400 flex items-center"><i class="fa-solid fa-circle-check mr-2"></i> Lampu automatik</div>
+                                    <div class="text-xs text-emerald-400 flex items-center"><i class="fa-solid fa-circle-check mr-2"></i> Penggera pintar</div>
+                                    <div class="text-xs text-emerald-400 flex items-center"><i class="fa-solid fa-circle-check mr-2"></i> Kawalan suhu automatik</div>
+                                    <div class="text-xs text-emerald-400 flex items-center"><i class="fa-solid fa-circle-check mr-2"></i> Sistem IoT</div>
+                                </div>
+                            </div>
                         </div>
-                        <h4 class="font-orbitron font-bold text-sm text-white">Rumah Pintar</h4>
-                        <p class="text-xs text-slate-400">Sistem kawalan lampu automatik, termostat pemanas pintar, dan pembantu suara rumah yang dikawal mikropengawal pintar.</p>
                     </div>
 
-                    <!-- Keselamatan -->
-                    <div class="p-5 rounded-2xl bg-slate-900/50 border border-slate-800 text-center space-y-3">
-                        <div class="w-12 h-12 rounded-full bg-neonPurple/10 flex items-center justify-center text-neonPurple mx-auto">
-                            <i class="fa-solid fa-shield-halved text-xl"></i>
+                    <!-- Kad 2: Sistem Keselamatan -->
+                    <div class="border border-slate-800 rounded-2xl bg-slate-900/40 overflow-hidden transition-all duration-300 hover:border-neonPurple/50">
+                        <button onclick="toggleAppCard('app-card-2')" class="w-full p-5 flex items-center justify-between text-left focus:outline-none hover:bg-slate-900/20 transition-colors">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 rounded-xl bg-neonPurple/10 flex items-center justify-center text-neonPurple text-lg">
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                </div>
+                                <h4 class="font-orbitron font-extrabold text-sm md:text-base text-slate-200">🔐 Sistem Keselamatan</h4>
+                            </div>
+                            <i id="app-card-2-chevron" class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-350"></i>
+                        </button>
+                        <div id="app-card-2-content" class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out bg-slate-950/40">
+                            <div class="p-5 border-t border-slate-850 space-y-4">
+                                <p class="text-xs md:text-sm text-slate-400">
+                                    Sistem keselamatan moden menggunakan sensor elektronik dan mikropengawal untuk mengesan pencerobohan dan mengawal akses bangunan secara automasi.
+                                </p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+                                    <div class="text-xs text-emerald-400 flex items-center"><i class="fa-solid fa-circle-check mr-2"></i> Pengimbas cap jari</div>
+                                    <div class="text-xs text-emerald-400 flex items-center"><i class="fa-solid fa-circle-check mr-2"></i> Kamera CCTV pintar</div>
+                                    <div class="text-xs text-emerald-400 flex items-center"><i class="fa-solid fa-circle-check mr-2"></i> Sensor PIR (Gerakan)</div>
+                                    <div class="text-xs text-emerald-400 flex items-center"><i class="fa-solid fa-circle-check mr-2"></i> Sistem penggera</div>
+                                </div>
+                            </div>
                         </div>
-                        <h4 class="font-orbitron font-bold text-sm text-white">Sistem Keselamatan</h4>
-                        <p class="text-xs text-slate-400">Pengesan penceroboh berasaskan PIR sensor, kunci pintu pintar menggunakan pengimbas cap jari biometric.</p>
                     </div>
 
-                    <!-- Robotik -->
-                    <div class="p-5 rounded-2xl bg-slate-900/50 border border-slate-800 text-center space-y-3">
-                        <div class="w-12 h-12 rounded-full bg-neonBlue/10 flex items-center justify-center text-neonBlue mx-auto">
-                            <i class="fa-solid fa-robot text-xl"></i>
+                    <!-- Kad 3: Robotik dan Automasi -->
+                    <div class="border border-slate-800 rounded-2xl bg-slate-900/40 overflow-hidden transition-all duration-300 hover:border-neonBlue/50">
+                        <button onclick="toggleAppCard('app-card-3')" class="w-full p-5 flex items-center justify-between text-left focus:outline-none hover:bg-slate-900/20 transition-colors">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 rounded-xl bg-neonBlue/10 flex items-center justify-center text-neonBlue text-lg">
+                                    <i class="fa-solid fa-robot"></i>
+                                </div>
+                                <h4 class="font-orbitron font-extrabold text-sm md:text-base text-slate-200">🤖 Robotik dan Automasi</h4>
+                            </div>
+                            <i id="app-card-3-chevron" class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-350"></i>
+                        </button>
+                        <div id="app-card-3-content" class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out bg-slate-950/40">
+                            <div class="p-5 border-t border-slate-850 space-y-4">
+                                <p class="text-xs md:text-sm text-slate-400">
+                                    Robot industri menggunakan sistem elektronik untuk melakukan tugas secara automatik dengan lebih pantas, efisien, dan jitu.
+                                </p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+                                    <div class="text-xs text-emerald-400 flex items-center"><i class="fa-solid fa-circle-check mr-2"></i> Robot pemasangan kilang</div>
+                                    <div class="text-xs text-emerald-400 flex items-center"><i class="fa-solid fa-circle-check mr-2"></i> AGV (Automated Guided Vehicle)</div>
+                                    <div class="text-xs text-emerald-400 flex items-center"><i class="fa-solid fa-circle-check mr-2"></i> Robot pembersih vakum</div>
+                                    <div class="text-xs text-emerald-400 flex items-center"><i class="fa-solid fa-circle-check mr-2"></i> Robot pengendalian gudang</div>
+                                </div>
+                            </div>
                         </div>
-                        <h4 class="font-orbitron font-bold text-sm text-white">Robotik & Automasi</h4>
-                        <p class="text-xs text-slate-400">Lengan robotik industri, kenderaan tanpa pemandu (AGV), robot pengumpul sampah, dan robot pembersih vakum automatik.</p>
+                    </div>
+
+                    <!-- Kad 4: Pertanian Pintar -->
+                    <div class="border border-slate-800 rounded-2xl bg-slate-900/40 overflow-hidden transition-all duration-300 hover:border-neonPurple/50">
+                        <button onclick="toggleAppCard('app-card-4')" class="w-full p-5 flex items-center justify-between text-left focus:outline-none hover:bg-slate-900/20 transition-colors">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 rounded-xl bg-neonPurple/10 flex items-center justify-center text-neonPurple text-lg">
+                                    <i class="fa-solid fa-seedling"></i>
+                                </div>
+                                <h4 class="font-orbitron font-extrabold text-sm md:text-base text-slate-200">🚜 Pertanian Pintar</h4>
+                            </div>
+                            <i id="app-card-4-chevron" class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-350"></i>
+                        </button>
+                        <div id="app-card-4-content" class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out bg-slate-950/40">
+                            <div class="p-5 border-t border-slate-850 space-y-4">
+                                <p class="text-xs md:text-sm text-slate-400">
+                                    Sensor elektronik membantu petani moden memantau parameter tanah, suhu persekitaran, and menguruskan sistem pengairan secara automatik melalui sistem IoT.
+                                </p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+                                    <div class="text-xs text-emerald-400 flex items-center"><i class="fa-solid fa-circle-check mr-2"></i> Sensor kelembapan tanah</div>
+                                    <div class="text-xs text-emerald-400 flex items-center"><i class="fa-solid fa-circle-check mr-2"></i> Sistem siraman automatik</div>
+                                    <div class="text-xs text-emerald-400 flex items-center"><i class="fa-solid fa-circle-check mr-2"></i> Rumah hijau pintar</div>
+                                    <div class="text-xs text-emerald-400 flex items-center"><i class="fa-solid fa-circle-check mr-2"></i> Pemantauan tanaman jauh</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kad 5: Teknologi Perubatan -->
+                    <div class="border border-slate-800 rounded-2xl bg-slate-900/40 overflow-hidden transition-all duration-300 hover:border-neonBlue/50">
+                        <button onclick="toggleAppCard('app-card-5')" class="w-full p-5 flex items-center justify-between text-left focus:outline-none hover:bg-slate-900/20 transition-colors">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 rounded-xl bg-neonBlue/10 flex items-center justify-center text-neonBlue text-lg">
+                                    <i class="fa-solid fa-heart-pulse"></i>
+                                </div>
+                                <h4 class="font-orbitron font-extrabold text-sm md:text-base text-slate-200">🏥 Teknologi Perubatan</h4>
+                            </div>
+                            <i id="app-card-5-chevron" class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-350"></i>
+                        </button>
+                        <div id="app-card-5-content" class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out bg-slate-950/40">
+                            <div class="p-5 border-t border-slate-850 space-y-4">
+                                <p class="text-xs md:text-sm text-slate-400">
+                                    Peralatan perubatan moden menggunakan litar bersepadu elektronik berketepatan tinggi untuk memantau, mendiagnosis, dan membantu merawat pesakit secara cekap.
+                                </p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+                                    <div class="text-xs text-emerald-400 flex items-center"><i class="fa-solid fa-circle-check mr-2"></i> Monitor denyutan jantung</div>
+                                    <div class="text-xs text-emerald-400 flex items-center"><i class="fa-solid fa-circle-check mr-2"></i> Mesin ECG (Electrocardiogram)</div>
+                                    <div class="text-xs text-emerald-400 flex items-center"><i class="fa-solid fa-circle-check mr-2"></i> Sistem imbasan MRI</div>
+                                    <div class="text-xs text-emerald-400 flex items-center"><i class="fa-solid fa-circle-check mr-2"></i> Alat bantuan pemantauan pesakit</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -1259,7 +1392,7 @@
                 function: "Bergetar pada frekuensi tertentu untuk menghasilkan isyarat bunyi bip (audio alarm atau notification tones) bagi menarik perhatian pengguna.",
                 uses: [
                     "Dipasang pada perkakas seperti ketuhar gelombang mikro (microwave) untuk berbunyi bip selepas makanan siap dipanaskan.",
-                    "Digunakan dalam sistem penggera kebakaran (smoke detector) dan penggera penceroboh rumah.",
+                    "Digunakan dalam sistem penggera kebakaran (smoke detector) and penggera penceroboh rumah.",
                     "Sebagai bunyi pemberitahuan ralat pada komputer riba atau sistem permainan retro."
                 ],
                 symbolSvg: `<svg class="w-24 h-10 stroke-neonCyan fill-none" stroke-width="2.5" viewBox="0 0 100 40"><path d="M 0,20 L 30,20 M 70,20 L 100,20 M 30,10 L 30,30 L 50,30 L 70,35 L 70,5 L 50,10 Z" /></svg>`
@@ -1340,6 +1473,38 @@
             modal.classList.add('hidden');
             modal.classList.remove('flex');
             document.body.classList.remove('overflow-hidden');
+        }
+
+
+        // --- LOGIK KAD INTERAKTIF EXPANDABLE (MODAL APLIKASI) ---
+        function toggleAppCard(cardId) {
+            const content = document.getElementById(`${cardId}-content`);
+            const chevron = document.getElementById(`${cardId}-chevron`);
+            
+            // Periksa sama ada kad ini sedang dibuka
+            const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+
+            // Tutup semua kad dahulu untuk membina pengalaman akordion kemas (pilihan, atau biarkan terbuka)
+            // Di sini kita tutup semua kad lain bagi memelihara tumpuan murid
+            for (let i = 1; i <= 5; i++) {
+                const otherContent = document.getElementById(`app-card-${i}-content`);
+                const otherChevron = document.getElementById(`app-card-${i}-chevron`);
+                if (otherContent && otherContent !== content) {
+                    otherContent.style.maxHeight = '0px';
+                    if (otherChevron) {
+                        otherChevron.style.transform = 'rotate(0deg)';
+                    }
+                }
+            }
+
+            // Laraskan ketinggian kad semasa
+            if (isOpen) {
+                content.style.maxHeight = '0px';
+                chevron.style.transform = 'rotate(0deg)';
+            } else {
+                content.style.maxHeight = content.scrollHeight + 'px';
+                chevron.style.transform = 'rotate(180deg)';
+            }
         }
 
 
@@ -1572,6 +1737,13 @@
             document.getElementById(modalId).classList.remove('hidden');
             document.getElementById(modalId).classList.add('flex');
             document.body.classList.add('overflow-hidden');
+            
+            // Khas untuk modal aplikasi: buka kad pertama secara automatik bagi interaksi visual awal
+            if (modalId === 'aplikasi-modal') {
+                setTimeout(() => {
+                    toggleAppCard('app-card-1');
+                }, 300);
+            }
         }
 
         function closeModal(modalId) {
