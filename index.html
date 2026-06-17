@@ -236,7 +236,7 @@
     <!-- 1. HOMEPAGE HERO BANNER (Full Width, 100vh) -->
     <section id="utama" class="relative w-full h-screen flex items-center justify-center overflow-hidden bg-slate-950">
         <!-- Background Banner Image -->
-        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-700" style="background-image: url('homepage.png');"></div>
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-700" style="background-image: url('Gemini_Generated_Image_7f8apf7f8apf7f8a.png');"></div>
         <!-- Dark Overlay Separuh Lut Sinar -->
         <div class="absolute inset-0 bg-black/40"></div>
         
@@ -305,12 +305,12 @@
                     <span class="text-xs text-neonBlue font-semibold uppercase tracking-wider">Topik 1 • Pengenalan</span>
                 </div>
 
-                <!-- NEW SEKSYEN INTERAKTIF: Infografik Komponen Elektronik Asas -->
+                <!-- SEKSYEN INTERAKTIF: Infografik Komponen Elektronik Asas -->
                 <div class="col-span-1 md:col-span-2 lg:col-span-3 glass-card rounded-3xl p-6 md:p-8 hover:shadow-neonPurple transition-all duration-500 search-target flex flex-col items-center justify-center space-y-6" data-search="komponen resistor perintang kapasitor diod led suis buzzer breadboard asas rbt papan litar">
                     <div class="text-center space-y-2">
                         <span class="inline-block px-3 py-1 rounded-full bg-neonPurple/10 border border-neonPurple/30 text-neonPurple text-xs uppercase font-orbitron tracking-widest">Penerokaan Interaktif</span>
                         <h3 class="font-orbitron text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-neonBlue to-neonPurple">Infografik Komponen Elektronik Asas</h3>
-                        <p class="text-slate-400 text-sm max-w-xl mx-auto">Klik terus pada bulatan nadi biru di atas imej infografik, atau tap mana-mana kad pilihan di bawah untuk mempelajari fungsi komponen.</p>
+                        <p class="text-slate-400 text-sm max-w-xl mx-auto">Klik terus pada bulatan nadi biru di atas imej infografik, atau ketik mana-mana kad pilihan di bawah untuk mempelajari fungsi komponen.</p>
                     </div>
 
                     <!-- Layout Grid: Infografik Kiri, Navigasi Pintar Kanan -->
@@ -354,7 +354,7 @@
 
                                 <!-- Fullscreen View Trigger Overlay (Bottom Bar) -->
                                 <div class="absolute bottom-3 right-3 z-30">
-                                    <button onclick="openInfographicModal()" class="px-3.5 py-2 rounded-xl bg-slate-900/90 border border-neonPurple/40 text-neonCyan text-[11px] font-bold uppercase tracking-widest hover:scale-105 transition-all flex items-center space-x-1.5 shadow-lg">
+                                    <button onclick="openInfographicModal(); event.stopPropagation();" class="px-3.5 py-2 rounded-xl bg-slate-900/90 border border-neonPurple/40 text-neonCyan text-[11px] font-bold uppercase tracking-widest hover:scale-105 transition-all flex items-center space-x-1.5 shadow-lg">
                                         <i class="fa-solid fa-expand"></i>
                                         <span>Skrin Penuh</span>
                                     </button>
@@ -893,7 +893,7 @@
         </div>
         <!-- Scrollable Image Container -->
         <div class="w-full h-full flex items-center justify-center overflow-auto p-4 md:p-8">
-            <img id="modal-infographic-img" src="ChatGPT Image Jun 10, 2026, 12_58_00 AM.png" alt="Infografik Komponen Elektronik Asas Fullscreen" class="max-w-full max-h-full object-contain rounded-xl shadow-2xl transition-transform duration-300 ease-out cursor-zoom-in" onclick="toggleZoom(event)">
+            <img id="modal-infographic-img" src="infografik.png" alt="Infografik Komponen Elektronik Asas Fullscreen" class="max-w-full max-h-full object-contain rounded-xl shadow-2xl transition-transform duration-300 ease-out cursor-zoom-in" onclick="toggleZoom(event)">
         </div>
     </div>
 
@@ -928,7 +928,7 @@
                             </tr>
                             <tr>
                                 <td class="p-4 font-semibold text-white">Kos</td>
-                                <td class="p-4">Jauh lebih murah kerana berkeupayaan rendah dan berstruktur kompak.</td>
+                                <td class="p-4">Jauh lebih murah kerana berkeupayaan rendah and berstruktur kompak.</td>
                                 <td class="p-4">Lebih mahal disebabkan kuasa pemprosesan tinggi dan komponen sokongan luar.</td>
                             </tr>
                             <tr>
@@ -1135,7 +1135,7 @@
                 english: "Resistor",
                 icon: "fa-wave-square",
                 definition: "Komponen elektronik pasif yang berfungsi untuk menghalang atau mengehadkan kuantiti aliran arus elektrik dalam sesuatu litar lengkap.",
-                function: "Mengurangkan nilai arus elektrik dan membahagi voltan elektrik berdasarkan Hukum Ohm ($V = I \\times R$) bagi mengelakkan kerosakan pada peranti lain.",
+                function: "Mengurangkan nilai arus elektrik dan membahagi voltan elektrik berdasarkan Hukum Ohm (V = I x R) bagi mengelakkan kerosakan pada peranti lain.",
                 uses: [
                     "Melindungi komponen sensitif seperti LED daripada terbakar akibat menerima arus elektrik berlebihan.",
                     "Digunakan sebagai pembahagi voltan dalam litar penderia cahaya (pembahagi voltan penderia LDR).",
@@ -1215,7 +1215,7 @@
                 definition: "Papan plastik yang dipenuhi dengan lubang sambungan berkonduktor di bawahnya, membolehkan komponen elektronik dihubungkan tanpa pematerian.",
                 function: "Menyediakan tapak sambungan fizikal dan elektrikal yang fleksibel untuk penyambungan sementara kaki komponen dan wayar pelompat (jumper wires).",
                 uses: [
-                    "Digunakan oleh pelajar dan jurutera untuk menguji idea serta membina prototip litar RBT sebelum pematerian kekal dilakukan.",
+                    "Digunakan oleh pelajar dan jurutera untuk menguji idea serta membina prototaip litar RBT sebelum pematerian kekal dilakukan.",
                     "Sangat praktikal untuk menukar, mencabut, dan menggantikan komponen litar elektrik yang rosak dengan cepat.",
                     "Menyediakan rel kuasa khusus (positif dan negatif) untuk pengagihan kuasa elektrik yang kemas ke seluruh projek."
                 ],
