@@ -436,37 +436,51 @@
                 <!-- Topik 3: Mikropengawal (Microcontroller) -->
                 <div class="glass-card rounded-2xl p-6 hover:shadow-neonBlue hover:scale-[1.02] transition-all duration-300 flex flex-col justify-between search-target" data-search="mikropengawal microcontroller cpu ram rom input output arduino esp32 microbit mcu">
                     <div>
-                        <div class="w-12 h-12 rounded-xl bg-neonBlue/10 flex items-center justify-center text-neonBlue mb-6">
-                            <i class="fa-solid fa-gamepad text-2xl"></i>
+                        <!-- Preview Image -->
+                        <div class="h-[180px] w-full overflow-hidden rounded-xl border border-neonBlue/30 mb-4 group/img relative">
+                            <img src="cpu.png" class="w-full h-full object-cover object-left hover:scale-110 transition-transform duration-500" alt="Pratinjau Mikropengawal">
+                            <div class="absolute inset-0 bg-gradient-to-t from-darkBg/60 to-transparent"></div>
                         </div>
-                        <h3 class="font-orbitron text-xl font-bold mb-3">Mikropengawal</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-neonBlue/10 flex items-center justify-center text-neonBlue mb-3">
+                            <i class="fa-solid fa-gamepad text-xl"></i>
+                        </div>
+                        <h3 class="font-orbitron text-xl font-bold mb-2">Mikropengawal</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed mb-4">
                             Satu cip litar bersepadu (IC) yang mengandungi CPU, memori, dan port input/output untuk mengawal sistem elektronik kecil.
                         </p>
-                        <div class="space-y-2 mb-4">
-                            <div class="flex items-center text-xs text-slate-300"><i class="fa-solid fa-check text-neonCyan mr-2"></i> Mengawal robotik & IoT</div>
-                            <div class="flex items-center text-xs text-slate-300"><i class="fa-solid fa-check text-neonCyan mr-2"></i> Contoh: Arduino, Micro:bit</div>
-                        </div>
                     </div>
-                    <span class="text-xs text-neonBlue font-semibold uppercase tracking-wider">Topik 3 • Kawalan Pintar</span>
+                    <div class="space-y-3">
+                        <button onclick="openModal('mcu-modal')" class="w-full py-2.5 bg-neonBlue/20 hover:bg-neonBlue/40 text-neonBlue hover:text-white rounded-xl text-xs font-semibold tracking-wider transition-all flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <span>Lihat Infografik Mikropengawal</span>
+                        </button>
+                        <span class="text-[10px] text-neonBlue font-semibold uppercase tracking-wider block text-center">Topik 3 • Kawalan Pintar</span>
+                    </div>
                 </div>
 
                 <!-- Topik 4: Mikroprosesor (Microprocessor) -->
                 <div class="glass-card rounded-2xl p-6 hover:shadow-neonPurple hover:scale-[1.02] transition-all duration-300 flex flex-col justify-between search-target" data-search="mikroprosesor microprocessor komputer laptop intel amd mpu">
                     <div>
-                        <div class="w-12 h-12 rounded-xl bg-neonPurple/10 flex items-center justify-center text-neonPurple mb-6">
-                            <i class="fa-solid fa-calculator text-2xl"></i>
+                        <!-- Preview Image -->
+                        <div class="h-[180px] w-full overflow-hidden rounded-xl border border-neonPurple/30 mb-4 group/img relative">
+                            <img src="cpu.png" class="w-full h-full object-cover object-right hover:scale-110 transition-transform duration-500" alt="Pratinjau Mikroprosesor">
+                            <div class="absolute inset-0 bg-gradient-to-t from-darkBg/60 to-transparent"></div>
                         </div>
-                        <h3 class="font-orbitron text-xl font-bold mb-3">Mikroprosesor</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-neonPurple/10 flex items-center justify-center text-neonPurple mb-3">
+                            <i class="fa-solid fa-calculator text-xl"></i>
+                        </div>
+                        <h3 class="font-orbitron text-xl font-bold mb-2">Mikroprosesor</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed mb-4">
                             Cip pemprosesan berkuasa tinggi tanpa memori dalaman yang digunakan dalam komputer untuk memproses kuantiti data yang besar.
                         </p>
-                        <div class="space-y-2 mb-4">
-                            <div class="flex items-center text-xs text-slate-300"><i class="fa-solid fa-check text-neonPurple mr-2"></i> Kuasa tinggi (Intel, AMD)</div>
-                            <div class="flex items-center text-xs text-slate-300"><i class="fa-solid fa-check text-neonPurple mr-2"></i> Memerlukan RAM & Storage luar</div>
-                        </div>
                     </div>
-                    <span class="text-xs text-neonPurple font-semibold uppercase tracking-wider">Topik 4 • Pemprosesan Data</span>
+                    <div class="space-y-3">
+                        <button onclick="openModal('mpu-modal')" class="w-full py-2.5 bg-neonPurple/20 hover:bg-neonPurple/40 text-neonPurple hover:text-white rounded-xl text-xs font-semibold tracking-wider transition-all flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <span>Lihat Infografik Mikroprosesor</span>
+                        </button>
+                        <span class="text-[10px] text-neonPurple font-semibold uppercase tracking-wider block text-center">Topik 4 • Pemprosesan Data</span>
+                    </div>
                 </div>
 
                 <!-- Topik 5: Perbezaan Mikropengawal vs Mikroprosesor -->
@@ -477,7 +491,7 @@
                         </div>
                         <h3 class="font-orbitron text-xl font-bold mb-3">Perbezaan MCU & MPU</h3>
                         <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                            Adakah anda keliru antara kedua-duanya? Ketahui perbezaan ketara dari segi struktur, aplikasi, kos dan kecekapan kuasa.
+                            Adakah anda keliru antara kedua-duanya? Ketahui perbezaan ketara dari segi struktur, aplikasi, kos dan kecekapan kuasa secara visual.
                         </p>
                         <button onclick="openModal('perbezaan-modal')" class="w-full py-2 bg-neonBlue/20 hover:bg-neonBlue/40 text-neonBlue hover:text-white rounded-xl text-xs font-semibold tracking-wider transition-all">
                             BUKA JADUAL PERBANDINGAN <i class="fa-solid fa-table ml-1"></i>
@@ -954,51 +968,75 @@
     </div>
 
 
-    <!-- MODAL 2: Jadual Perbandingan Mikropengawal vs Mikroprosesor -->
+    <!-- MODAL 2: UPGRADED JADUAL PERBANDINGAN MCU & MPU -->
     <div id="perbezaan-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
-        <div class="glass-card max-w-4xl w-full rounded-2xl overflow-hidden border border-slate-800 flex flex-col max-h-[85vh]">
+        <div class="glass-card max-w-4xl w-full rounded-2xl overflow-hidden border border-slate-800 flex flex-col max-h-[90vh] shadow-glowingHotspot animate-fade-in-up">
             <div class="p-6 bg-slate-950 flex justify-between items-center border-b border-slate-800">
-                <h3 class="font-orbitron font-bold text-lg text-neonBlue"><i class="fa-solid fa-scale-balanced mr-2"></i> Perbandingan MCU & MPU</h3>
-                <button onclick="closeModal('perbezaan-modal')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-times text-xl"></i></button>
+                <h3 class="font-orbitron font-extrabold text-lg text-transparent bg-clip-text bg-gradient-to-r from-neonBlue to-neonPurple"><i class="fa-solid fa-scale-balanced mr-2"></i> Perbandingan MCU & MPU</h3>
+                <button onclick="closeModal('perbezaan-modal')" class="text-slate-400 hover:text-white bg-slate-900 hover:bg-neonPurple/20 p-2.5 rounded-xl border border-slate-800 transition-all"><i class="fa-solid fa-times text-xl"></i></button>
             </div>
-            <div class="p-6 overflow-y-auto">
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-sm border-collapse">
-                        <thead>
-                            <tr class="border-b border-slate-800 text-neonCyan font-orbitron">
-                                <th class="p-4">Aspek</th>
-                                <th class="p-4">Mikropengawal (MCU)</th>
-                                <th class="p-4">Mikroprosesor (MPU)</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-slate-800 text-slate-300">
-                            <tr>
-                                <td class="p-4 font-semibold text-white">Struktur</td>
-                                <td class="p-4">Mengandungi CPU, RAM, ROM, dan I/O port dalam satu cip bersepadu tunggal.</td>
-                                <td class="p-4">Hanya mengandungi CPU. RAM, ROM dan pemacu luaran disambung secara berasingan.</td>
-                            </tr>
-                            <tr>
-                                <td class="p-4 font-semibold text-white">Penggunaan</td>
-                                <td class="p-4">Bagi melakukan tugasan khusus (Dedicated task) seperti kawalan perkakasan.</td>
-                                <td class="p-4">Bagi memproses sistem pengkomputeran pelbagai tugasan yang kompleks.</td>
-                            </tr>
-                            <tr>
-                                <td class="p-4 font-semibold text-white">Kos</td>
-                                <td class="p-4">Jauh lebih murah kerana berkeupayaan rendah and berstruktur kompak.</td>
-                                <td class="p-4">Lebih mahal disebabkan kuasa pemprosesan tinggi dan komponen sokongan luar.</td>
-                            </tr>
-                            <tr>
-                                <td class="p-4 font-semibold text-white">Kuasa</td>
-                                <td class="p-4">Penggunaan kuasa yang sangat rendah dan cekap tenaga.</td>
-                                <td class="p-4">Menggunakan tenaga elektrik yang lebih tinggi dan menjana lebih haba.</td>
-                            </tr>
-                            <tr>
-                                <td class="p-4 font-semibold text-white">Aplikasi</td>
-                                <td class="p-4">Alat kawalan jauh, mesin basuh pintar, Arduino, sistem automasi rumah.</td>
-                                <td class="p-4">Komputer peribadi, komputer riba, telefon pintar mewah, konsol permainan video.</td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="p-6 overflow-y-auto space-y-6">
+                <!-- Top: Full cpu.png Infographic -->
+                <div class="relative overflow-hidden rounded-xl border border-neonBlue/30 shadow-neonBlue/10 group">
+                    <img src="mikropengawal.png" alt="Infografik Penuh Mikropengawal vs Mikroprosesor" class="w-full h-auto object-contain rounded-xl">
+                </div>
+
+                <!-- Bottom: Interactive Comparison Grid -->
+                <div class="space-y-4">
+                    <h4 class="font-orbitron font-bold text-sm text-neonCyan tracking-wider uppercase"><i class="fa-solid fa-circle-info mr-2"></i> KAD PERBANDINGAN INTERAKTIF:</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Card 1: Mikropengawal (MCU) -->
+                        <div class="p-5 rounded-xl bg-slate-900/60 border border-neonBlue/30 space-y-4">
+                            <div class="flex items-center space-x-3 border-b border-slate-800 pb-3">
+                                <span class="text-neonBlue text-xl"><i class="fa-solid fa-gamepad"></i></span>
+                                <h5 class="font-orbitron font-bold text-white">Mikropengawal (MCU)</h5>
+                            </div>
+                            <ul class="space-y-3 text-xs md:text-sm text-slate-300">
+                                <li class="flex items-start space-x-2">
+                                    <span class="text-neonBlue"><i class="fa-solid fa-circle-notch text-[10px] mt-1.5"></i></span>
+                                    <span><strong>Struktur:</strong> CPU + RAM + ROM dalam satu cip</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <span class="text-neonBlue"><i class="fa-solid fa-circle-notch text-[10px] mt-1.5"></i></span>
+                                    <span><strong>Kos:</strong> Murah</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <span class="text-neonBlue"><i class="fa-solid fa-circle-notch text-[10px] mt-1.5"></i></span>
+                                    <span><strong>Kuasa:</strong> Jimat tenaga</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <span class="text-neonBlue"><i class="fa-solid fa-circle-notch text-[10px] mt-1.5"></i></span>
+                                    <span><strong>Aplikasi:</strong> Sistem kawalan</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Card 2: Mikroprosesor (MPU) -->
+                        <div class="p-5 rounded-xl bg-slate-900/60 border border-neonPurple/30 space-y-4">
+                            <div class="flex items-center space-x-3 border-b border-slate-800 pb-3">
+                                <span class="text-neonPurple text-xl"><i class="fa-solid fa-calculator"></i></span>
+                                <h5 class="font-orbitron font-bold text-white">Mikroprosesor (MPU)</h5>
+                            </div>
+                            <ul class="space-y-3 text-xs md:text-sm text-slate-300">
+                                <li class="flex items-start space-x-2">
+                                    <span class="text-neonPurple"><i class="fa-solid fa-circle-notch text-[10px] mt-1.5"></i></span>
+                                    <span><strong>Struktur:</strong> CPU sahaja</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <span class="text-neonPurple"><i class="fa-solid fa-circle-notch text-[10px] mt-1.5"></i></span>
+                                    <span><strong>Kos:</strong> Mahal</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <span class="text-neonPurple"><i class="fa-solid fa-circle-notch text-[10px] mt-1.5"></i></span>
+                                    <span><strong>Kuasa:</strong> Penggunaan tenaga tinggi</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <span class="text-neonPurple"><i class="fa-solid fa-circle-notch text-[10px] mt-1.5"></i></span>
+                                    <span><strong>Aplikasi:</strong> Komputer</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1028,7 +1066,7 @@
                 
                 <!-- Hero Infographic Utama (Fokus Pembelajaran) -->
                 <div class="relative overflow-hidden rounded-2xl border border-neonBlue/40 shadow-neonBlue/20 group">
-                    <img src="aplikasi.png" alt="Visual Aplikasi Elektronik Kehidupan Seharian" class="w-full h-auto object-cover transform group-hover:scale-[1.015] transition-transform duration-500 rounded-2xl">
+                    <img src="ChatGPT Image Jun 18, 2026, 03_37_47 AM.png" alt="Visual Aplikasi Elektronik Kehidupan Seharian" class="w-full h-auto object-cover transform group-hover:scale-[1.015] transition-transform duration-500 rounded-2xl">
                     <div class="absolute inset-0 bg-gradient-to-t from-darkBg/60 to-transparent pointer-events-none"></div>
                 </div>
 
@@ -1060,7 +1098,7 @@
                         <div id="app-card-1-content" class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out bg-slate-950/40">
                             <div class="p-5 border-t border-slate-850 space-y-4">
                                 <p class="text-xs md:text-sm text-slate-400">
-                                    Rumah pintar menggunakan mikropengawal untuk mengawal lampu, penghawa dingin, kamera keselamatan, sistem penggera, dan peranti IoT melalui telefon pintar.
+                                    Rumah pintar menggunakan mikropengawal untuk mengawal lampu, penghawa dingin, kamera keselamatan, sistem penggera, and peranti IoT melalui telefon pintar.
                                 </p>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
                                     <div class="text-xs text-emerald-400 flex items-center"><i class="fa-solid fa-circle-check mr-2"></i> Lampu automatik</div>
@@ -1178,6 +1216,101 @@
 
                 </div>
 
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MODAL: Mikropengawal Detail -->
+    <div id="mcu-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="glass-card max-w-2xl w-full rounded-2xl overflow-hidden border border-slate-800 flex flex-col max-h-[85vh] shadow-glowingHotspot animate-fade-in-up">
+            <div class="p-6 bg-slate-950 flex justify-between items-center border-b border-slate-800">
+                <h3 class="font-orbitron font-extrabold text-lg text-transparent bg-clip-text bg-gradient-to-r from-neonBlue to-neonPurple">🧠 Mikropengawal (Microcontroller)</h3>
+                <button onclick="closeModal('mcu-modal')" class="text-slate-400 hover:text-white bg-slate-900 hover:bg-neonPurple/20 p-2.5 rounded-xl border border-slate-800 transition-all"><i class="fa-solid fa-times text-xl"></i></button>
+            </div>
+            <div class="p-6 overflow-y-auto space-y-6">
+                <!-- Crop left part of cpu.png -->
+                <div class="h-[250px] md:h-[300px] w-full overflow-hidden rounded-xl border border-neonBlue/30 relative">
+                    <img src="cpu.png" class="w-full h-full object-cover object-left" alt="Infografik Mikropengawal">
+                    <div class="absolute inset-0 bg-gradient-to-t from-darkBg/70 to-transparent"></div>
+                </div>
+                <div class="space-y-4">
+                    <div class="p-4 bg-slate-900/40 border border-slate-800 rounded-xl leading-relaxed text-sm text-slate-300">
+                        Mikropengawal ialah satu cip elektronik yang menggabungkan CPU, memori dan port input/output dalam satu cip.
+                    </div>
+                    <div class="space-y-2">
+                        <h4 class="font-orbitron font-bold text-xs text-neonBlue uppercase tracking-wider">Kegunaan Utama:</h4>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-850 text-xs text-slate-300 flex items-center space-x-2">
+                                <span class="text-emerald-400"><i class="fa-solid fa-circle-check"></i></span>
+                                <span>Robotik</span>
+                            </div>
+                            <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-850 text-xs text-slate-300 flex items-center space-x-2">
+                                <span class="text-emerald-400"><i class="fa-solid fa-circle-check"></i></span>
+                                <span>Sistem IoT</span>
+                            </div>
+                            <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-850 text-xs text-slate-300 flex items-center space-x-2">
+                                <span class="text-emerald-400"><i class="fa-solid fa-circle-check"></i></span>
+                                <span>Rumah Pintar</span>
+                            </div>
+                            <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-850 text-xs text-slate-300 flex items-center space-x-2">
+                                <span class="text-emerald-400"><i class="fa-solid fa-circle-check"></i></span>
+                                <span>Automasi</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MODAL: Mikroprosesor Detail -->
+    <div id="mpu-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="glass-card max-w-2xl w-full rounded-2xl overflow-hidden border border-slate-800 flex flex-col max-h-[85vh] shadow-glowingHotspot animate-fade-in-up">
+            <div class="p-6 bg-slate-950 flex justify-between items-center border-b border-slate-800">
+                <h3 class="font-orbitron font-extrabold text-xl text-transparent bg-clip-text bg-gradient-to-r from-neonBlue to-neonPurple">⚡ Mikroprosesor (Microprocessor)</h3>
+                <button onclick="closeModal('mpu-modal')" class="text-slate-400 hover:text-white bg-slate-900 hover:bg-neonPurple/20 p-2.5 rounded-xl border border-slate-800 transition-all"><i class="fa-solid fa-times text-lg"></i></button>
+            </div>
+            
+            <!-- Modal Body Content -->
+            <div class="p-6 md:p-8 overflow-y-auto space-y-6 text-sm leading-relaxed max-h-[70vh]">
+                <!-- Hero Image focusing right side of cpu.png -->
+                <div class="relative overflow-hidden rounded-2xl border border-neonPurple/40 shadow-neonPurple/20">
+                    <img src="cpu.png" class="w-full h-48 md:h-64 object-cover object-right rounded-2xl" alt="Visual Mikroprosesor">
+                    <div class="absolute inset-0 bg-gradient-to-t from-darkBg/60 to-transparent pointer-events-none"></div>
+                </div>
+
+                <!-- Penerangan -->
+                <div class="space-y-2">
+                    <h4 class="font-bold text-slate-200 flex items-center"><i class="fa-solid fa-book-open text-neonPurple mr-2"></i> PENERANGAN</h4>
+                    <p class="text-slate-300 bg-slate-900/20 p-4 rounded-xl border border-slate-850">
+                        Mikroprosesor ialah unit pemprosesan berkuasa tinggi yang memerlukan RAM dan storan luaran untuk berfungsi.
+                    </p>
+                </div>
+
+                <!-- Kegunaan -->
+                <div class="space-y-2">
+                    <h4 class="font-bold text-slate-200 flex items-center"><i class="fa-solid fa-circle-check text-emerald-400 mr-2"></i> KATEGORI PENGGUNAAN</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 p-1">
+                        <div class="flex items-start space-x-2.5 p-2 bg-slate-900/40 rounded-xl border border-slate-800/40 text-xs text-slate-300">
+                            <span class="w-5 h-5 rounded-md bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0 font-bold text-[10px]">1</span>
+                            <p class="leading-relaxed">Komputer</p>
+                        </div>
+                        <div class="flex items-start space-x-2.5 p-2 bg-slate-900/40 rounded-xl border border-slate-800/40 text-xs text-slate-300">
+                            <span class="w-5 h-5 rounded-md bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0 font-bold text-[10px]">2</span>
+                            <p class="leading-relaxed">Laptop</p>
+                        </div>
+                        <div class="flex items-center space-x-2.5 p-2 bg-slate-900/40 rounded-xl border border-slate-800/40 text-xs text-slate-300">
+                            <span class="w-5 h-5 rounded-md bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0 font-bold text-[10px]">3</span>
+                            <p class="leading-relaxed">AI dan Analitik Data</p>
+                        </div>
+                        <div class="flex items-start space-x-2.5 p-2 bg-slate-900/40 rounded-xl border border-slate-800/40 text-xs text-slate-300">
+                            <span class="w-5 h-5 rounded-md bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0 font-bold text-[10px]">4</span>
+                            <p class="leading-relaxed">Server dan Cloud Computing</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -1354,7 +1487,7 @@
                 uses: [
                     "Bertindak sebagai penerus (rectifier) bagi menukarkan voltan arus ulang-alik (AC) kepada arus terus (DC).",
                     "Melindungi litar mikropengawal daripada kerosakan sekiranya pengguna meletakkan bateri secara terbalik.",
-                    "Melindungi komponen pensuisan seperti transistor daripada lonjakan voltan songsang (back EMF) motor atau geganti."
+                    "Melindungi komponen sensitif seperti transistor daripada lonjakan voltan songsang (back EMF) motor atau geganti."
                 ],
                 symbolSvg: `<svg class="w-24 h-10 stroke-neonCyan fill-none" stroke-width="2.5" viewBox="0 0 100 40"><path d="M 0,20 L 35,20 M 65,20 L 100,20 M 35,5 L 35,35 L 65,20 Z M 65,5 L 65,35" /></svg>`
             },
@@ -1754,7 +1887,7 @@
 
         // Menutup modal sekiranya pengguna klik di luar modal card
         window.addEventListener('click', (e) => {
-            const modals = ['perbezaan-modal', 'aplikasi-modal', 'infographic-modal', 'component-detail-modal'];
+            const modals = ['perbezaan-modal', 'aplikasi-modal', 'infographic-modal', 'component-detail-modal', 'mcu-modal', 'mpu-modal'];
             modals.forEach(id => {
                 const modal = document.getElementById(id);
                 if(e.target === modal) {
