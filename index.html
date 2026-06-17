@@ -709,12 +709,68 @@
     <!-- 6. BAHAGIAN KUIZ / GAME -->
     <section id="kuiz" class="py-24 bg-gradient-to-t from-darkBg to-slate-900 border-t border-slate-800/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center space-y-4 mb-16">
+            <div class="text-center space-y-4 mb-12">
                 <span class="inline-block px-3 py-1 rounded-full bg-neonPurple/10 border border-neonPurple/20 text-neonPurple text-xs font-orbitron uppercase tracking-widest">Uji Minda Anda</span>
                 <h2 class="font-orbitron text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-neonBlue to-neonPurple">Uji Kefahaman Anda</h2>
                 <p class="text-slate-400 max-w-2xl mx-auto">Main game kuiz RBT yang menarik ini untuk menguji sejauh mana anda telah menguasai Reka Bentuk Elektronik!</p>
             </div>
 
+            <!-- KAD BAHARU: CABARAN KUIZ ELEKTRONIK INTERAKTIF -->
+            <div class="glass-card rounded-3xl p-6 md:p-10 border border-slate-800 shadow-glass mb-12 relative overflow-hidden bg-cover bg-center transition-all duration-300" style="background-image: radial-gradient(circle at top right, rgba(139, 92, 246, 0.15), transparent 60%);">
+                <!-- Background Decorative Circuit Lines (SVG) -->
+                <div class="absolute inset-0 opacity-15 pointer-events-none">
+                    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 0,60 L 180,60 L 210,30 L 400,30" stroke="#00D4FF" stroke-width="2" fill="none" />
+                        <circle cx="400" cy="30" r="4" fill="#00D4FF" />
+                        <path d="M 50,180 L 220,180 L 250,210 L 450,210" stroke="#8B5CF6" stroke-width="2" fill="none" />
+                        <circle cx="450" cy="210" r="4" fill="#8B5CF6" />
+                    </svg>
+                </div>
+
+                <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <!-- Kiri: Kandungan Utama & Butang (Desktop: 8 cols, Mobile: Stacked) -->
+                    <div class="lg:col-span-8 space-y-6">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 rounded-2xl bg-neonPurple/10 border border-neonPurple/30 flex items-center justify-center text-neonPurple shadow-neonPurple/20">
+                                <i class="fa-solid fa-trophy text-2xl animate-bounce"></i>
+                            </div>
+                            <h3 class="font-orbitron text-xl md:text-2xl lg:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-neonBlue to-neonPurple">
+                                🎮 Sertai Cabaran Kuiz Elektronik
+                            </h3>
+                        </div>
+
+                        <p class="text-slate-300 text-sm md:text-base leading-relaxed">
+                            Uji kefahaman anda tentang Reka Bentuk Elektronik, Mikropengawal, Mikroprosesor dan Komponen Elektronik melalui permainan kuiz interaktif ZEP.
+                        </p>
+
+                        <!-- Butang Utama dengan Animasi & Kesan Glow -->
+                        <div class="pt-2 flex flex-wrap gap-4">
+                            <a href="https://quiz.zep.us/en/play/Qaon1J" target="_blank" class="inline-flex items-center justify-center space-x-3 px-8 py-4 rounded-xl bg-gradient-to-r from-[#00D4FF] to-neonPurple text-slate-900 font-extrabold text-sm md:text-base shadow-neonBlue hover:shadow-neonPurple hover:scale-105 transition-all duration-300 animate-pulse">
+                                <i class="fa-solid fa-rocket text-lg"></i>
+                                <span>🚀 MULA KUIZ ZEP</span>
+                            </a>
+                        </div>
+
+                        <!-- Call To Action -->
+                        <div class="text-xs md:text-sm text-neonCyan font-bold flex items-center space-x-2 pt-2">
+                            <span>🏆 Capai markah tertinggi dan buktikan anda seorang Pakar Elektronik!</span>
+                        </div>
+                    </div>
+
+                    <!-- Kanan: QR Code (Desktop: 4 cols, Mobile: Stacked) -->
+                    <div class="lg:col-span-4 flex flex-col items-center justify-center text-center">
+                        <div class="glass-card p-4 rounded-2xl border border-white/10 shadow-glass backdrop-blur-md max-w-[210px] hover:scale-105 transition-transform duration-300">
+                            <!-- Menggunakan imej QR Code rasmi yang dimuat naik -->
+                            <img src="kodQR.jpeg" alt="QR Code Kuiz ZEP RBT T2" class="w-36 h-36 md:w-40 md:h-40 object-cover rounded-lg border border-slate-700/50 shadow-neonBlue/20">
+                        </div>
+                        <p class="text-slate-400 text-[11px] md:text-xs mt-3 max-w-[240px] leading-relaxed">
+                            📱 Imbas QR Code untuk bermain menggunakan telefon pintar
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Susun atur asal Iframe & Pencapaian -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
                 <!-- Iframe Quiz -->
                 <div class="lg:col-span-8 glass-card rounded-3xl overflow-hidden border border-slate-800 shadow-2xl relative min-h-[550px]">
