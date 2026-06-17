@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIJAK ELEKTRONIK - Reka Bentuk Elektronik RBT Tingkatan 2</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        neonBlue: '#00D4FF',
+                        neonCyan: '#00FFFF',
+                        neonPurple: '#8B5CF6',
+                        darkBg: '#0B0F19',
+                        darkCard: '#1E293B',
+                        lightBg: '#F8FAFC',
+                        lightCard: '#FFFFFF'
+                    },
+                    boxShadow: {
+                        neonBlue: '0 0 15px rgba(0, 212, 255, 0.5)',
+                        neonPurple: '0 0 20px rgba(139, 92, 246, 0.6)',
+                        glass: '0 8px 32px 0 rgba(0, 212, 255, 0.2)',
+                        glowingHotspot: '0 0 12px #00D4FF, 0 0 25px #8B5CF6'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Poppins & Orbitron & Plus Jakarta Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Model Viewer untuk Paparan 3D -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .font-orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #8B5CF6;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00D4FF;
+        }
+        /* Glassmorphism Classes */
+        .glass-card {
+            background: rgba(15, 23, 42, 0.55);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .light .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes pulse-neon {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; filter: drop-shadow(0 0 15px #00D4FF); }
+        }
+        .pulse-neon {
+            animation: pulse-neon 3s infinite;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        /* Hotspot styling for Model Viewer & Infographic mapping */
+        .Hotspot {
+            background: #00D4FF;
+            border-radius: 50%;
+            border: 2px solid #ffffff;
+            box-shadow: 0 0 10px rgba(0,212,255,0.8);
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .Hotspot:not([data-visible]) {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            pointer-events: none;
+        }
+        .Hotspot:focus {
+            outline: none;
+        }
+        .Hotspot:hover {
+            transform: scale(1.3);
+            background: #8B5CF6;
+        }
+        .HotspotAnnotation {
+            background: rgba(15, 23, 42, 0.9);
+            color: #fff;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 12px;
+            position: absolute;
+            transform: translate(10px, -30px);
+            width: max-content;
+            max-width: 200px;
+            display: none;
+            border: 1px solid #00D4FF;
+            z-index: 50;
+        }
+        .Hotspot:active .HotspotAnnotation, .Hotspot:focus .HotspotAnnotation {
+            display: block;
+        }
+
+        /* Pulsing Glow for Infographic Hotspots */
+        @keyframes pulseGlow {
+            0% {
+                transform: scale(0.9) translate(-50%, -50%);
+                box-shadow: 0 0 0 0 rgba(0, 212, 255, 0.7);
+            }
+            70% {
+                transform: scale(1.1) translate(-50%, -50%);
+                box-shadow: 0 0 0 12px rgba(0, 212, 255, 0);
+            }
+            100% {
+                transform: scale(0.9) translate(-50%, -50%);
+                box-shadow: 0 0 0 0 rgba(0, 212, 255, 0);
+            }
+        }
+        .glowing-hotspot {
+            animation: pulseGlow 2s infinite;
+            transform-origin: top left;
+        }
+    </style>
+</head>
+<body class="bg-darkBg text-slate-100 min-h-screen transition-colors duration-300 dark">
+
+    <!-- Loading Screen Futuristik -->
+    <div id="loading-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-darkBg transition-opacity duration-700">
+        <div class="relative flex flex-col items-center">
+            <!-- Neon Ring -->
+            <div class="w-24 h-24 rounded-full border-4 border-t-neonBlue border-r-transparent border-b-neonPurple border-l-transparent animate-spin"></div>
+            <!-- Litar Grafik Ringkas -->
+            <div class="absolute inset-0 flex items-center justify-center">
+                <i class="fa-solid fa-microchip text-3xl text-neonCyan pulse-neon"></i>
+            </div>
+            <h1 class="font-orbitron text-2xl font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-neonBlue to-neonPurple mt-6">BIJAK ELEKTRONIK</h1>
+            <p class="text-xs text-slate-400 mt-2 tracking-widest uppercase">Memuatkan Sistem Pembelajaran...</p>
+        </div>
+    </div>
+
+    <!-- Progress Bar Pembelajaran -->
+    <div class="fixed top-0 left-0 w-full h-1 bg-slate-800 z-50">
+        <div id="progress-bar" class="h-full bg-gradient-to-r from-neonBlue to-neonPurple w-0 transition-all duration-300"></div>
+    </div>
+
+    <!-- Header & Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-40 transition-all duration-300 border-b border-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center">
+                    <a href="#utama" class="flex items-center space-x-2">
+                        <i class="fa-solid fa-bolt text-2xl text-neonCyan pulse-neon"></i>
+                        <span class="font-orbitron font-extrabold text-xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-neonBlue to-neonPurple">BIJAK ELEKTRONIK</span>
+                    </a>
+                </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#utama" class="text-sm font-medium hover:text-neonBlue transition-colors">Utama</a>
+                    <a href="#nota" class="text-sm font-medium hover:text-neonBlue transition-colors">Nota</a>
+                    <a href="#chatbot" class="text-sm font-medium hover:text-neonBlue transition-colors">AI Chatbot</a>
+                    <a href="#ar-3d" class="text-sm font-medium hover:text-neonBlue transition-colors">AR & 3D</a>
+                    <a href="#kuiz" class="text-sm font-medium hover:text-neonBlue transition-colors">Kuiz</a>
+                    <a href="#tentang" class="text-sm font-medium hover:text-neonBlue transition-colors">Tentang</a>
+                </div>
+                <!-- Control Buttons & Hamburger -->
+                <div class="flex items-center space-x-4">
+                    <!-- Dark Mode Toggle -->
+                    <button id="dark-mode-toggle" class="p-2.5 rounded-lg bg-slate-800 dark:bg-slate-700 text-yellow-400 dark:text-neonBlue hover:scale-105 transition-all" title="Tukar Mod Paparan">
+                        <i class="fa-solid fa-sun dark:hidden"></i>
+                        <i class="fa-solid fa-moon hidden dark:block"></i>
+                    </button>
+                    <!-- Mobile Hamburger -->
+                    <button id="mobile-menu-btn" class="md:hidden p-2.5 rounded-lg bg-slate-800 text-slate-300 hover:text-neonCyan transition-all">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer Navigation -->
+    <div id="mobile-drawer" class="fixed inset-0 z-40 bg-darkBg/90 backdrop-blur-md translate-x-full transition-transform duration-300 md:hidden flex flex-col justify-center items-center space-y-8 text-xl font-semibold">
+        <button id="close-drawer-btn" class="absolute top-6 right-6 text-3xl text-slate-400 hover:text-neonBlue">
+            <i class="fa-solid fa-times"></i>
+        </button>
+        <a href="#utama" class="hover:text-neonBlue transition-colors" onclick="toggleDrawer()">Utama</a>
+        <a href="#nota" class="hover:text-neonBlue transition-colors" onclick="toggleDrawer()">Nota</a>
+        <a href="#chatbot" class="hover:text-neonBlue transition-colors" onclick="toggleDrawer()">AI Chatbot</a>
+        <a href="#ar-3d" class="hover:text-neonBlue transition-colors" onclick="toggleDrawer()">AR & 3D</a>
+        <a href="#kuiz" class="hover:text-neonBlue transition-colors" onclick="toggleDrawer()">Kuiz</a>
+        <a href="#tentang" class="hover:text-neonBlue transition-colors" onclick="toggleDrawer()">Tentang</a>
+    </div>
+
+    <!-- 1. HOMEPAGE HERO BANNER (Full Width, 100vh) -->
+    <section id="utama" class="relative w-full h-screen flex items-center justify-center overflow-hidden bg-slate-950">
+        <!-- Background Banner Image -->
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-700" style="background-image: url('Gemini_Generated_Image_7f8apf7f8apf7f8a.png');"></div>
+        <!-- Dark Overlay Separuh Lut Sinar -->
+        <div class="absolute inset-0 bg-black/40"></div>
+        
+        <!-- Glassmorphism Card Content (Centered) -->
+        <div class="relative z-10 max-w-4xl mx-auto px-4 text-center animate-fade-in-up">
+            <div class="glass-card p-8 md:p-12 rounded-3xl border border-white/10 shadow-glass backdrop-blur-md max-w-3xl mx-auto space-y-6">
+                <span class="inline-block px-4 py-1.5 rounded-full bg-neonPurple/20 border border-neonPurple/40 text-neonPurple text-xs uppercase font-orbitron tracking-widest animate-pulse">RBT Tingkatan 2 • REKA BENTUK ELEKTRONIK</span>
+                
+                <h1 class="font-orbitron text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+                    Dunia Reka Bentuk <span class="text-transparent bg-clip-text bg-gradient-to-r from-neonBlue to-neonPurple">Elektronik</span>
+                </h1>
+                
+                <p class="text-slate-200 text-sm sm:text-base md:text-lg max-w-2xl mx-auto font-sans leading-relaxed">
+                    Terokai Mikropengawal, Mikroprosesor, AR dan Teknologi Elektronik Masa Hadapan
+                </p>
+                
+                <div class="flex flex-wrap justify-center gap-4 pt-4">
+                    <a href="#nota" class="px-8 py-3.5 rounded-xl bg-gradient-to-r from-neonBlue to-neonPurple text-slate-900 font-extrabold shadow-neonBlue hover:shadow-neonPurple hover:scale-105 transition-all duration-300">
+                        <i class="fa-solid fa-rocket mr-2"></i> Mulakan Pembelajaran
+                    </a>
+                    <a href="#nota" class="px-8 py-3.5 rounded-xl border border-neonBlue/50 hover:bg-[#00D4FF]/10 text-white hover:text-neonBlue font-semibold hover:scale-105 transition-all duration-300">
+                        <i class="fa-solid fa-book-open mr-2"></i> Lihat Nota
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. NOTA PEMBELAJARAN -->
+    <section id="nota" class="py-24 border-t border-slate-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Header Bahagian -->
+            <div class="text-center space-y-4 mb-16">
+                <h2 class="font-orbitron text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-neonBlue to-neonPurple">Asas Reka Bentuk Elektronik</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Terokai prinsip asas elektronik, komponen perkakasan, perbezaan mikropengawal & mikroprosesor, serta aplikasinya dalam dunia pintar.</p>
+                
+                <!-- Search Bar Nota -->
+                <div class="relative max-w-md mx-auto mt-6">
+                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </span>
+                    <input id="search-input" type="text" placeholder="Cari nota komponen, perbezaan, IoT..." class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 focus:outline-none focus:border-neonBlue focus:ring-1 focus:ring-neonBlue transition-all text-sm">
+                </div>
+            </div>
+
+            <!-- Grid Nota -->
+            <div id="nota-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+                
+                <!-- Topik 1: Definisi Elektronik -->
+                <div class="glass-card rounded-2xl p-6 hover:shadow-neonBlue hover:scale-[1.02] transition-all duration-300 flex flex-col justify-between search-target" data-search="definisi elektronik teknologi aliran elektron memproses maklumat">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-neonBlue/10 flex items-center justify-center text-neonBlue mb-6">
+                            <i class="fa-solid fa-circle-nodes text-2xl"></i>
+                        </div>
+                        <h3 class="font-orbitron text-xl font-bold mb-3">Definisi Elektronik</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            Elektronik ialah bidang teknologi yang menggunakan aliran elektron dalam komponen elektronik untuk mengawal, memproses dan menghantar maklumat.
+                        </p>
+                        <!-- Inline Illustration -->
+                        <div class="p-4 bg-slate-900/50 rounded-xl border border-slate-800 flex items-center space-x-3 mb-4">
+                            <i class="fa-solid fa-bolt-lightning text-neonCyan animate-bounce"></i>
+                            <span class="text-xs text-slate-300">Aliran Elektron &rarr; Isyarat Digital/Analog</span>
+                        </div>
+                    </div>
+                    <span class="text-xs text-neonBlue font-semibold uppercase tracking-wider">Topik 1 • Pengenalan</span>
+                </div>
+
+                <!-- NEW SEKSYEN INTERAKTIF: Infografik Komponen Elektronik Asas -->
+                <div class="col-span-1 md:col-span-2 lg:col-span-3 glass-card rounded-3xl p-6 md:p-8 hover:shadow-neonPurple transition-all duration-500 search-target flex flex-col items-center justify-center space-y-6" data-search="komponen resistor perintang kapasitor diod led suis buzzer breadboard asas rbt papan litar">
+                    <div class="text-center space-y-2">
+                        <span class="inline-block px-3 py-1 rounded-full bg-neonPurple/10 border border-neonPurple/30 text-neonPurple text-xs uppercase font-orbitron tracking-widest">Penerokaan Interaktif</span>
+                        <h3 class="font-orbitron text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-neonBlue to-neonPurple">Infografik Komponen Elektronik Asas</h3>
+                        <p class="text-slate-400 text-sm max-w-xl mx-auto">Klik terus pada bulatan nadi biru di atas imej infografik, atau tap mana-mana kad pilihan di bawah untuk mempelajari fungsi komponen.</p>
+                    </div>
+
+                    <!-- Layout Grid: Infografik Kiri, Navigasi Pintar Kanan -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 w-full items-center">
+                        
+                        <!-- Bahagian Kiri: Visual Infografik Bersama Hotspots Responsif -->
+                        <div class="lg:col-span-7 flex justify-center items-center w-full">
+                            <div class="relative w-full max-w-[550px] aspect-[1000/1230] rounded-2xl border border-slate-800/80 shadow-2xl hover:shadow-neonPurple/20 transition-all duration-500 overflow-hidden group">
+                                <!-- Infografik Asal -->
+                                <img src="ChatGPT Image Jun 10, 2026, 12_58_00 AM.png" alt="Infografik Komponen Elektronik Asas" class="w-full h-full object-cover rounded-2xl">
+                                
+                                <!-- Hotspots Layer (Pulsing Circles) -->
+                                <!-- 1. Perintang -->
+                                <button onclick="openComponentDetail('perintang')" class="absolute top-[21%] left-[23%] w-7 h-7 bg-neonBlue/80 hover:bg-neonPurple rounded-full border border-white flex items-center justify-center glowing-hotspot transition-all z-20" title="Klik Perintang">
+                                    <span class="w-2.5 h-2.5 bg-white rounded-full"></span>
+                                </button>
+                                <!-- 2. Kapasitor -->
+                                <button onclick="openComponentDetail('kapasitor')" class="absolute top-[21%] left-[73%] w-7 h-7 bg-neonBlue/80 hover:bg-neonPurple rounded-full border border-white flex items-center justify-center glowing-hotspot transition-all z-20" title="Klik Kapasitor">
+                                    <span class="w-2.5 h-2.5 bg-white rounded-full"></span>
+                                </button>
+                                <!-- 3. Diod -->
+                                <button onclick="openComponentDetail('diod')" class="absolute top-[49%] left-[18%] w-7 h-7 bg-neonBlue/80 hover:bg-neonPurple rounded-full border border-white flex items-center justify-center glowing-hotspot transition-all z-20" title="Klik Diod">
+                                    <span class="w-2.5 h-2.5 bg-white rounded-full"></span>
+                                </button>
+                                <!-- 4. LED -->
+                                <button onclick="openComponentDetail('led')" class="absolute top-[49%] left-[49%] w-7 h-7 bg-neonBlue/80 hover:bg-neonPurple rounded-full border border-white flex items-center justify-center glowing-hotspot transition-all z-20" title="Klik LED">
+                                    <span class="w-2.5 h-2.5 bg-white rounded-full"></span>
+                                </button>
+                                <!-- 5. Suis -->
+                                <button onclick="openComponentDetail('suis')" class="absolute top-[49%] left-[79%] w-7 h-7 bg-neonBlue/80 hover:bg-neonPurple rounded-full border border-white flex items-center justify-center glowing-hotspot transition-all z-20" title="Klik Suis">
+                                    <span class="w-2.5 h-2.5 bg-white rounded-full"></span>
+                                </button>
+                                <!-- 6. Buzzer -->
+                                <button onclick="openComponentDetail('buzzer')" class="absolute top-[74%] left-[18%] w-7 h-7 bg-neonBlue/80 hover:bg-neonPurple rounded-full border border-white flex items-center justify-center glowing-hotspot transition-all z-20" title="Klik Buzzer">
+                                    <span class="w-2.5 h-2.5 bg-white rounded-full"></span>
+                                </button>
+                                <!-- 7. Breadboard -->
+                                <button onclick="openComponentDetail('breadboard')" class="absolute top-[74%] left-[58%] w-7 h-7 bg-neonBlue/80 hover:bg-neonPurple rounded-full border border-white flex items-center justify-center glowing-hotspot transition-all z-20" title="Klik Breadboard">
+                                    <span class="w-2.5 h-2.5 bg-white rounded-full"></span>
+                                </button>
+
+                                <!-- Fullscreen View Trigger Overlay (Bottom Bar) -->
+                                <div class="absolute bottom-3 right-3 z-30">
+                                    <button onclick="openInfographicModal()" class="px-3.5 py-2 rounded-xl bg-slate-900/90 border border-neonPurple/40 text-neonCyan text-[11px] font-bold uppercase tracking-widest hover:scale-105 transition-all flex items-center space-x-1.5 shadow-lg">
+                                        <i class="fa-solid fa-expand"></i>
+                                        <span>Skrin Penuh</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bahagian Kanan: Pilihan Pintar Kad Glassmorphism (Mobile Friendly) -->
+                        <div class="lg:col-span-5 flex flex-col space-y-3 w-full">
+                            <span class="text-xs font-orbitron text-neonBlue uppercase tracking-wider mb-2 block"><i class="fa-solid fa-list-check mr-1.5"></i> PILIH KOMPONEN:</span>
+                            
+                            <!-- Perintang Card -->
+                            <div onclick="openComponentDetail('perintang')" class="p-3.5 rounded-xl bg-slate-900/40 border border-slate-800/80 hover:border-neonBlue hover:bg-slate-900/80 transition-all duration-300 cursor-pointer flex items-center justify-between group">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-9 h-9 rounded-lg bg-neonBlue/10 flex items-center justify-center text-neonBlue text-sm group-hover:scale-110 transition-transform"><i class="fa-solid fa-wave-square"></i></div>
+                                    <span class="text-sm font-semibold text-slate-200">1. Perintang (Resistor)</span>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-xs text-slate-500 group-hover:text-neonBlue transition-colors"></i>
+                            </div>
+
+                            <!-- Kapasitor Card -->
+                            <div onclick="openComponentDetail('kapasitor')" class="p-3.5 rounded-xl bg-slate-900/40 border border-slate-800/80 hover:border-neonPurple hover:bg-slate-900/80 transition-all duration-300 cursor-pointer flex items-center justify-between group">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-9 h-9 rounded-lg bg-neonPurple/10 flex items-center justify-center text-neonPurple text-sm group-hover:scale-110 transition-transform"><i class="fa-solid fa-battery-half"></i></div>
+                                    <span class="text-sm font-semibold text-slate-200">2. Kapasitor (Capacitor)</span>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-xs text-slate-500 group-hover:text-neonPurple transition-colors"></i>
+                            </div>
+
+                            <!-- Diod Card -->
+                            <div onclick="openComponentDetail('diod')" class="p-3.5 rounded-xl bg-slate-900/40 border border-slate-800/80 hover:border-neonBlue hover:bg-slate-900/80 transition-all duration-300 cursor-pointer flex items-center justify-between group">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-9 h-9 rounded-lg bg-neonBlue/10 flex items-center justify-center text-neonBlue text-sm group-hover:scale-110 transition-transform"><i class="fa-solid fa-circle-arrow-right"></i></div>
+                                    <span class="text-sm font-semibold text-slate-200">3. Diod (Diode)</span>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-xs text-slate-500 group-hover:text-neonBlue transition-colors"></i>
+                            </div>
+
+                            <!-- LED Card -->
+                            <div onclick="openComponentDetail('led')" class="p-3.5 rounded-xl bg-slate-900/40 border border-slate-800/80 hover:border-neonPurple hover:bg-slate-900/80 transition-all duration-300 cursor-pointer flex items-center justify-between group">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-9 h-9 rounded-lg bg-neonPurple/10 flex items-center justify-center text-neonPurple text-sm group-hover:scale-110 transition-transform"><i class="fa-solid fa-lightbulb"></i></div>
+                                    <span class="text-sm font-semibold text-slate-200">4. LED (Light Emitting Diode)</span>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-xs text-slate-500 group-hover:text-neonPurple transition-colors"></i>
+                            </div>
+
+                            <!-- Suis Card -->
+                            <div onclick="openComponentDetail('suis')" class="p-3.5 rounded-xl bg-slate-900/40 border border-slate-800/80 hover:border-neonBlue hover:bg-slate-900/80 transition-all duration-300 cursor-pointer flex items-center justify-between group">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-9 h-9 rounded-lg bg-neonBlue/10 flex items-center justify-center text-neonBlue text-sm group-hover:scale-110 transition-transform"><i class="fa-solid fa-toggle-on"></i></div>
+                                    <span class="text-sm font-semibold text-slate-200">5. Suis (Switch)</span>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-xs text-slate-500 group-hover:text-neonBlue transition-colors"></i>
+                            </div>
+
+                            <!-- Buzzer Card -->
+                            <div onclick="openComponentDetail('buzzer')" class="p-3.5 rounded-xl bg-slate-900/40 border border-slate-800/80 hover:border-neonPurple hover:bg-slate-900/80 transition-all duration-300 cursor-pointer flex items-center justify-between group">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-9 h-9 rounded-lg bg-neonPurple/10 flex items-center justify-center text-neonPurple text-sm group-hover:scale-110 transition-transform"><i class="fa-solid fa-volume-high"></i></div>
+                                    <span class="text-sm font-semibold text-slate-200">6. Buzzer</span>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-xs text-slate-500 group-hover:text-neonPurple transition-colors"></i>
+                            </div>
+
+                            <!-- Breadboard Card -->
+                            <div onclick="openComponentDetail('breadboard')" class="p-3.5 rounded-xl bg-slate-900/40 border border-slate-800/80 hover:border-neonBlue hover:bg-slate-900/80 transition-all duration-300 cursor-pointer flex items-center justify-between group">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-9 h-9 rounded-lg bg-neonBlue/10 flex items-center justify-center text-neonBlue text-sm group-hover:scale-110 transition-transform"><i class="fa-solid fa-table-cells"></i></div>
+                                    <span class="text-sm font-semibold text-slate-200">7. Breadboard (Papan Litar)</span>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-xs text-slate-500 group-hover:text-neonBlue transition-colors"></i>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topik 3: Mikropengawal (Microcontroller) -->
+                <div class="glass-card rounded-2xl p-6 hover:shadow-neonBlue hover:scale-[1.02] transition-all duration-300 flex flex-col justify-between search-target" data-search="mikropengawal microcontroller cpu ram rom input output arduino esp32 microbit mcu">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-neonBlue/10 flex items-center justify-center text-neonBlue mb-6">
+                            <i class="fa-solid fa-gamepad text-2xl"></i>
+                        </div>
+                        <h3 class="font-orbitron text-xl font-bold mb-3">Mikropengawal</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            Satu cip litar bersepadu (IC) yang mengandungi CPU, memori, dan port input/output untuk mengawal sistem elektronik kecil.
+                        </p>
+                        <div class="space-y-2 mb-4">
+                            <div class="flex items-center text-xs text-slate-300"><i class="fa-solid fa-check text-neonCyan mr-2"></i> Mengawal robotik & IoT</div>
+                            <div class="flex items-center text-xs text-slate-300"><i class="fa-solid fa-check text-neonCyan mr-2"></i> Contoh: Arduino, Micro:bit</div>
+                        </div>
+                    </div>
+                    <span class="text-xs text-neonBlue font-semibold uppercase tracking-wider">Topik 3 • Kawalan Pintar</span>
+                </div>
+
+                <!-- Topik 4: Mikroprosesor (Microprocessor) -->
+                <div class="glass-card rounded-2xl p-6 hover:shadow-neonPurple hover:scale-[1.02] transition-all duration-300 flex flex-col justify-between search-target" data-search="mikroprosesor microprocessor komputer laptop intel amd mpu">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-neonPurple/10 flex items-center justify-center text-neonPurple mb-6">
+                            <i class="fa-solid fa-calculator text-2xl"></i>
+                        </div>
+                        <h3 class="font-orbitron text-xl font-bold mb-3">Mikroprosesor</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            Cip pemprosesan berkuasa tinggi tanpa memori dalaman yang digunakan dalam komputer untuk memproses kuantiti data yang besar.
+                        </p>
+                        <div class="space-y-2 mb-4">
+                            <div class="flex items-center text-xs text-slate-300"><i class="fa-solid fa-check text-neonPurple mr-2"></i> Kuasa tinggi (Intel, AMD)</div>
+                            <div class="flex items-center text-xs text-slate-300"><i class="fa-solid fa-check text-neonPurple mr-2"></i> Memerlukan RAM & Storage luar</div>
+                        </div>
+                    </div>
+                    <span class="text-xs text-neonPurple font-semibold uppercase tracking-wider">Topik 4 • Pemprosesan Data</span>
+                </div>
+
+                <!-- Topik 5: Perbezaan Mikropengawal vs Mikroprosesor -->
+                <div class="glass-card rounded-2xl p-6 hover:shadow-neonBlue hover:scale-[1.02] transition-all duration-300 flex flex-col justify-between search-target" data-search="perbezaan perbandingan mikropengawal vs mikroprosesor mcu mpu kos struktur">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-neonBlue/10 flex items-center justify-center text-neonBlue mb-6">
+                            <i class="fa-solid fa-scale-balanced text-2xl"></i>
+                        </div>
+                        <h3 class="font-orbitron text-xl font-bold mb-3">Perbezaan MCU & MPU</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            Adakah anda keliru antara kedua-duanya? Ketahui perbezaan ketara dari segi struktur, aplikasi, kos dan kecekapan kuasa.
+                        </p>
+                        <button onclick="openModal('perbezaan-modal')" class="w-full py-2 bg-neonBlue/20 hover:bg-neonBlue/40 text-neonBlue hover:text-white rounded-xl text-xs font-semibold tracking-wider transition-all">
+                            BUKA JADUAL PERBANDINGAN <i class="fa-solid fa-table ml-1"></i>
+                        </button>
+                    </div>
+                    <span class="text-xs text-neonBlue font-semibold uppercase tracking-wider mt-4">Topik 5 • Perbandingan</span>
+                </div>
+
+                <!-- Topik 6: Aplikasi Elektronik Dalam Kehidupan -->
+                <div class="glass-card rounded-2xl p-6 hover:shadow-neonPurple hover:scale-[1.02] transition-all duration-300 flex flex-col justify-between search-target" data-search="aplikasi iot smart home rumah pintar keselamatan robotik pertanian industri">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-neonPurple/10 flex items-center justify-center text-neonPurple mb-6">
+                            <i class="fa-solid fa-network-wired text-2xl"></i>
+                        </div>
+                        <h3 class="font-orbitron text-xl font-bold mb-3">Aplikasi Elektronik</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            Bagaimanakah teknologi elektronik mengubah gaya hidup harian kita? Lihat contoh aplikasi di sekeliling anda.
+                        </p>
+                        <button onclick="openModal('aplikasi-modal')" class="w-full py-2 bg-neonPurple/20 hover:bg-neonPurple/40 text-neonPurple hover:text-white rounded-xl text-xs font-semibold tracking-wider transition-all">
+                            LIHAT CONTAK APLIKASI <i class="fa-solid fa-display ml-1"></i>
+                        </button>
+                    </div>
+                    <span class="text-xs text-neonPurple font-semibold uppercase tracking-wider mt-4">Topik 6 • Aplikasi Realiti</span>
+                </div>
+
+            </div>
+
+            <!-- No results message -->
+            <div id="no-results" class="hidden text-center py-12">
+                <i class="fa-solid fa-magnifying-glass-minus text-4xl text-slate-600 mb-4"></i>
+                <p class="text-slate-400">Tiada nota dijumpai untuk carian tersebut. Cuba kata kunci lain.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 4. AI CHATBOT SECTION -->
+    <section id="chatbot" class="py-24 bg-gradient-to-b from-darkBg to-slate-900 border-t border-slate-800/50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center space-y-4 mb-12">
+                <h2 class="font-orbitron text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-neonBlue to-neonPurple">AI Cikgu Elektronik</h2>
+                <p class="text-slate-400">Tanya sebarang soalan mengenai Reka Bentuk Elektronik RBT Tingkatan 2. Cikgu AI sedia membantu!</p>
+            </div>
+
+            <!-- Chatbot Container Interface -->
+            <div class="glass-card rounded-2xl overflow-hidden shadow-2xl flex flex-col h-[550px] border border-slate-800">
+                <!-- Chatbot Header -->
+                <div class="px-6 py-4 bg-slate-950 flex items-center justify-between border-b border-slate-800">
+                    <div class="flex items-center space-x-3">
+                        <div class="relative">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-neonBlue to-neonPurple flex items-center justify-center">
+                                <i class="fa-solid fa-user-tie text-slate-900 text-lg"></i>
+                            </div>
+                            <span class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-slate-950 rounded-full animate-pulse"></span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm">Cikgu AI Elektronik</h4>
+                            <span class="text-[10px] text-neonCyan tracking-widest uppercase font-orbitron">Pakar RBT T2</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <span class="px-2 py-1 text-[10px] bg-neonBlue/10 text-neonBlue rounded border border-neonBlue/20 font-orbitron">GEMINI FLASH</span>
+                    </div>
+                </div>
+
+                <!-- Chat Messages Body -->
+                <div id="chat-messages" class="flex-1 p-6 overflow-y-auto space-y-4 text-sm scroll-smooth">
+                    <!-- Bot message -->
+                    <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 rounded-full bg-neonPurple flex items-center justify-center text-xs text-slate-900 font-bold shrink-0">AI</div>
+                        <div class="p-3.5 rounded-2xl rounded-tl-none bg-slate-800 text-slate-100 max-w-[80%] leading-relaxed">
+                            Assalamualaikum dan selamat datang! Saya <strong>AI Cikgu Elektronik</strong>. 
+                            Saya boleh membantu anda memahami sukatan pelajaran Reka Bentuk Elektronik RBT Tingkatan 2. 
+                            Tanya saya apa-apa sahaja, atau klik salah satu soalan lazim di bawah!
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suggestion Chips -->
+                <div class="px-6 py-3 bg-slate-950/50 flex flex-wrap gap-2 border-t border-slate-800/40">
+                    <button onclick="sendSuggestedQuestion('Apakah mikropengawal?')" class="px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs text-slate-300 hover:border-neonBlue hover:text-neonBlue transition-all">Apakah mikropengawal?</button>
+                    <button onclick="sendSuggestedQuestion('Apakah fungsi LED?')" class="px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs text-slate-300 hover:border-neonBlue hover:text-neonBlue transition-all">Apakah fungsi LED?</button>
+                    <button onclick="sendSuggestedQuestion('Apakah perbezaan mikropengawal & mikroprosesor?')" class="px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs text-slate-300 hover:border-neonBlue hover:text-neonBlue transition-all">Apakah perbezaan MCU & MPU?</button>
+                </div>
+
+                <!-- Chat Input Controls -->
+                <form id="chat-form" class="p-4 bg-slate-950 flex items-center space-x-3 border-t border-slate-800">
+                    <input id="chat-input" type="text" placeholder="Tulis soalan anda di sini..." class="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-neonPurple transition-all text-sm" required>
+                    <button type="submit" class="p-3 rounded-xl bg-gradient-to-r from-neonBlue to-neonPurple text-slate-900 hover:scale-105 transition-all">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. BAHAGIAN AR DAN 3D -->
+    <section id="ar-3d" class="py-24 border-t border-slate-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center space-y-4 mb-16">
+                <span class="inline-block px-3 py-1 rounded-full bg-neonBlue/10 border border-neonBlue/20 text-neonBlue text-xs font-orbitron uppercase tracking-widest">Visualisasi Imersif</span>
+                <h2 class="font-orbitron text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-neonBlue to-neonPurple">Terokai Mikropengawal & Komponen Dalam 3D</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Interaksi secara terus dengan perkakasan melalui model 3D berkualiti tinggi. Klik pada titik panas (hotspot) untuk mempelajari reka bentuk sistem!</p>
+            </div>
+
+            <!-- 3D Viewer Workspace -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                
+                <!-- Controller Selection / Info Panel -->
+                <div class="lg:col-span-4 flex flex-col justify-between space-y-6">
+                    <div class="glass-card rounded-2xl p-6 border border-slate-800">
+                        <h3 class="font-orbitron text-lg font-bold mb-4 text-neonBlue"><i class="fa-solid fa-sliders mr-2"></i> PILIH MODEL 3D</h3>
+                        <div class="space-y-3">
+                            <button onclick="switch3DModel('arduino')" id="btn-model-arduino" class="w-full flex items-center justify-between p-4 rounded-xl bg-neonBlue/10 border border-neonBlue text-neonBlue font-semibold transition-all">
+                                <span class="flex items-center"><i class="fa-solid fa-microchip mr-3"></i> Arduino Uno R3</span>
+                                <i class="fa-solid fa-circle-check text-neonCyan"></i>
+                            </button>
+                            <button onclick="switch3DModel('components')" id="btn-model-components" class="w-full flex items-center justify-between p-4 rounded-xl bg-slate-900/50 border border-slate-800 hover:border-neonPurple text-slate-300 hover:text-slate-100 font-semibold transition-all">
+                                <span class="flex items-center"><i class="fa-solid fa-gears mr-3"></i> Set Komponen Elektronik</span>
+                                <i class="fa-solid fa-circle-notch hidden animate-spin text-neonPurple"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Hotspot Info Details Container -->
+                    <div class="glass-card rounded-2xl p-6 border border-slate-800 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-orbitron text-lg font-bold mb-4 text-neonPurple"><i class="fa-solid fa-circle-info mr-2"></i> SPESIFIKASI</h3>
+                            <div id="hotspot-detail-content" class="space-y-4">
+                                <p class="text-sm text-slate-400">Pilih atau klik mana-mana titik biru (Hotspot) di atas model 3D untuk melihat perincian fungsinya secara mendalam di sini.</p>
+                                <div class="p-4 bg-slate-950/40 rounded-xl border border-slate-800 flex items-center space-x-3">
+                                    <i class="fa-solid fa-hand-pointer text-neonBlue animate-pulse"></i>
+                                    <span class="text-xs text-slate-300">Gunakan tetikus atau sentuhan jari untuk memutar, membesarkan (zoom) atau mengalihkan (pan) model.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-6">
+                            <!-- AR Trigger Button -->
+                            <button id="ar-btn" class="w-full py-4 rounded-xl bg-gradient-to-r from-neonBlue to-neonPurple text-slate-900 font-extrabold shadow-neonBlue hover:shadow-neonPurple transition-all flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-mobile-screen-button"></i>
+                                <span>LIHAT DALAM AR (MOBILE)</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3D Interactive Canvas -->
+                <div class="lg:col-span-8 glass-card rounded-3xl overflow-hidden relative border border-slate-800 h-[500px] lg:h-auto min-h-[450px] flex items-center justify-center">
+                    
+                    <!-- 3D Model: Arduino Uno R3 -->
+                    <model-viewer id="arduino-viewer" 
+                                  src="arduino_uno_r3_elegoo.glb" 
+                                  ios-src=""
+                                  alt="Arduino Uno R3 Elegoo 3D Model" 
+                                  ar 
+                                  ar-modes="webxr scene-viewer quick-look" 
+                                  camera-controls 
+                                  auto-rotate 
+                                  shadow-intensity="1.5"
+                                  class="w-full h-full"
+                                  style="background-color: transparent;">
+                        
+                        <!-- Hotspots for Arduino Uno -->
+                        <button class="Hotspot" slot="hotspot-1" data-position="-0.75 0.35 1.5" data-normal="0 1 0" data-visibility onclick="showHotspotInfo('USB Port', 'Port USB digunakan untuk menyambungkan mikropengawal ke komputer untuk memuat naik kod program serta membekalkan kuasa elektrik 5V.')">
+                            <div class="HotspotAnnotation">Port USB</div>
+                        </button>
+                        <button class="Hotspot" slot="hotspot-2" data-position="0.5 0.35 0.1" data-normal="0 1 0" data-visibility onclick="showHotspotInfo('ATmega328P Chip', 'Cip Pemprosesan ATmega328P ialah unit pemprosesan utama (otak) bagi Arduino yang menyimpan dan melaksanakan program.')">
+                            <div class="HotspotAnnotation">ATmega328P</div>
+                        </button>
+                        <button class="Hotspot" slot="hotspot-3" data-position="0.8 0.35 1.7" data-normal="0 1 0" data-visibility onclick="showHotspotInfo('Digital Input/Output Pins', 'Pin Digital (0-13) digunakan untuk membaca input digital (seperti butang tekan) atau menghantar output digital (seperti menghidupkan LED).')">
+                            <div class="HotspotAnnotation">Digital Pins</div>
+                        </button>
+                        <button class="Hotspot" slot="hotspot-4" data-position="0.8 0.35 -1.2" data-normal="0 1 0" data-visibility onclick="showHotspotInfo('Analog Input Pins', 'Pin Analog (A0-A5) digunakan untuk membaca isyarat analog berterusan daripada sensor seperti sensor suhu atau perintang boleh laras.')">
+                            <div class="HotspotAnnotation">Analog Pins</div>
+                        </button>
+                        <button class="Hotspot" slot="hotspot-5" data-position="-0.1 0.35 -1.2" data-normal="0 1 0" data-visibility onclick="showHotspotInfo('Power Connection Pins', 'Pin Kuasa membekalkan voltan keluar seperti 5V, 3.3V, dan sambungan Ground (GND) untuk melengkapkan litar komponen.')">
+                            <div class="HotspotAnnotation">Power Pins</div>
+                        </button>
+                    </model-viewer>
+
+                    <!-- 3D Model: Electronic Components (Set of cc0) -->
+                    <model-viewer id="components-viewer" 
+                                  src="cc0_set_of_electronic_components.glb" 
+                                  ios-src=""
+                                  alt="Electronic Components 3D Model" 
+                                  ar 
+                                  ar-modes="webxr scene-viewer quick-look" 
+                                  camera-controls 
+                                  auto-rotate 
+                                  shadow-intensity="1.5"
+                                  class="w-full h-full hidden"
+                                  style="background-color: transparent;">
+                        
+                        <!-- Hotspots for Electronic Components -->
+                        <button class="Hotspot" slot="hotspot-6" data-position="-0.5 0.2 0.3" data-normal="0 1 0" data-visibility onclick="showHotspotInfo('Perintang (Resistor)', 'Perintang mengehadkan atau mengawal aliran arus elektrik dalam litar bagi melindungi komponen sensitif.')">
+                            <div class="HotspotAnnotation">Perintang</div>
+                        </button>
+                        <button class="Hotspot" slot="hotspot-7" data-position="0.1 0.3 0.1" data-normal="0 1 0" data-visibility onclick="showHotspotInfo('LED (Light Emitting Diode)', 'LED mengeluarkan cahaya apabila arus elektrik mengalir melahuinya dalam satu arah.')">
+                            <div class="HotspotAnnotation">LED</div>
+                        </button>
+                        <button class="Hotspot" slot="hotspot-8" data-position="-0.2 0.4 -0.5" data-normal="0 1 0" data-visibility onclick="showHotspotInfo('Kapasitor (Capacitor)', 'Kapasitor berfungsi untuk menyimpan dan melepaskan cas elektrik mengikut keperluan litar.')">
+                            <div class="HotspotAnnotation">Kapasitor</div>
+                        </button>
+                        <button class="Hotspot" slot="hotspot-9" data-position="0.6 0.2 -0.2" data-normal="0 1 0" data-visibility onclick="showHotspotInfo('Diod', 'Diod hanya membenarkan arus elektrik mengalir dalam satu arah sahaja dan menghalang arus songsang.')">
+                            <div class="HotspotAnnotation">Diod</div>
+                        </button>
+                        <button class="Hotspot" slot="hotspot-10" data-position="0.4 0.5 0.5" data-normal="0 1 0" data-visibility onclick="showHotspotInfo('Buzzer', 'Buzzer menukarkan isyarat elektrik kepada bunyi amaran atau isyarat akustik.')">
+                            <div class="HotspotAnnotation">Buzzer</div>
+                        </button>
+                    </model-viewer>
+
+                    <!-- Control Overlays -->
+                    <div class="absolute top-4 right-4 flex space-y-2 flex-col">
+                        <button onclick="toggle3DAutoRotate()" class="p-3 rounded-full bg-slate-900/80 text-neonCyan hover:bg-slate-800 transition-all shadow-md" title="Aktif/Nyahaktif Auto Putar">
+                            <i id="rotate-icon" class="fa-solid fa-sync animate-spin-slow"></i>
+                        </button>
+                        <button onclick="reset3DCamera()" class="p-3 rounded-full bg-slate-900/80 text-neonCyan hover:bg-slate-800 transition-all shadow-md" title="Tetap Semula Kamera">
+                            <i class="fa-solid fa-camera-rotate"></i>
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 6. BAHAGIAN KUIZ / GAME -->
+    <section id="kuiz" class="py-24 bg-gradient-to-t from-darkBg to-slate-900 border-t border-slate-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center space-y-4 mb-16">
+                <span class="inline-block px-3 py-1 rounded-full bg-neonPurple/10 border border-neonPurple/20 text-neonPurple text-xs font-orbitron uppercase tracking-widest">Uji Minda Anda</span>
+                <h2 class="font-orbitron text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-neonBlue to-neonPurple">Uji Kefahaman Anda</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Main game kuiz RBT yang menarik ini untuk menguji sejauh mana anda telah menguasai Reka Bentuk Elektronik!</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                <!-- Iframe Quiz -->
+                <div class="lg:col-span-8 glass-card rounded-3xl overflow-hidden border border-slate-800 shadow-2xl relative min-h-[550px]">
+                    <iframe 
+                        src="https://quiz.zep.us/en/play/Qaon1J" 
+                        class="absolute inset-0 w-full h-full border-0" 
+                        allow="fullscreen; autoplay; clipboard-write"
+                        title="Interactive Quiz RBT T2">
+                    </iframe>
+                </div>
+
+                <!-- Kad Pencapaian (Achievements) -->
+                <div class="lg:col-span-4 flex flex-col justify-between space-y-6">
+                    <div class="glass-card rounded-2xl p-6 border border-slate-800 flex-1">
+                        <h3 class="font-orbitron text-lg font-bold mb-6 text-neonBlue"><i class="fa-solid fa-trophy mr-2"></i> LENCANA PEMBELAJARAN</h3>
+                        
+                        <div class="space-y-6">
+                            <!-- Badge 1 -->
+                            <div class="flex items-center space-x-4 p-3 rounded-xl bg-slate-900/40 border border-slate-800/50">
+                                <div class="w-14 h-14 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-500 shrink-0">
+                                    <i class="fa-solid fa-seedling text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-sm text-slate-200">Pemula Elektronik</h4>
+                                    <p class="text-xs text-slate-400">Melengkapkan bacaan pengenalan elektronik & Komponen Asas.</p>
+                                </div>
+                            </div>
+
+                            <!-- Badge 2 -->
+                            <div class="flex items-center space-x-4 p-3 rounded-xl bg-slate-900/40 border border-slate-800/50">
+                                <div class="w-14 h-14 rounded-full bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-500 shrink-0">
+                                    <i class="fa-solid fa-gears text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-sm text-slate-200">Pakar Komponen</h4>
+                                    <p class="text-xs text-slate-400">Berinteraksi dengan model 3D dan mengklik semua hotspot komponen.</p>
+                                </div>
+                            </div>
+
+                            <!-- Badge 3 -->
+                            <div class="flex items-center space-x-4 p-3 rounded-xl bg-slate-900/40 border border-slate-800/50">
+                                <div class="w-14 h-14 rounded-full bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-500 shrink-0">
+                                    <i class="fa-solid fa-brain text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-sm text-slate-200">Master Mikropengawal</h4>
+                                    <p class="text-xs text-slate-400">Menyelesaikan kuiz ZEP di sebelah dengan markah penuh.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-6 bg-gradient-to-r from-neonBlue/10 to-neonPurple/10 border border-neonBlue/20 rounded-2xl">
+                        <p class="text-xs text-center text-slate-400">Sila ambil tangkapan skrin (screenshot) markah kuiz anda bersama lencana sebagai bukti pembelajaran anda untuk dikongsi dengan guru RBT anda!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. BAHAGIAN TENTANG -->
+    <section id="tentang" class="py-24 border-t border-slate-800/50 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
+            <h2 class="font-orbitron text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-neonBlue to-neonPurple">Tentang Bijak Elektronik</h2>
+            <div class="max-w-3xl mx-auto text-slate-300 space-y-6 leading-relaxed">
+                <p>
+                    <strong>BIJAK ELEKTRONIK</strong> ialah sebuah platform pembelajaran interaktif yang dibangunkan khusus bagi membantu pelajar Tingkatan 2 sekolah menengah di Malaysia menguasai subtopik <em>Reka Bentuk Elektronik</em> dalam mata pelajaran Reka Bentuk dan Teknologi (RBT).
+                </p>
+                <p>
+                    Berdasarkan Dokumen Standard Kurikulum dan Pentaksiran (DSKP) serta buku teks KPM, platform ini mengintegrasikan teknologi visualisasi model 3D berkeupayaan AR (Augmented Reality), pembantu maya peribadi AI Cikgu Elektronik, dan pendekatan pembelajaran berasaskan gamifikasi (Quiz) bagi menghasilkan suasana pembelajaran abad ke-21 yang seronok dan bermakna.
+                </p>
+            </div>
+            
+            <!-- Tech Badges -->
+            <div class="flex flex-wrap justify-center gap-4 pt-6">
+                <span class="px-3.5 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs text-slate-400">HTML5 / CSS3 / JS</span>
+                <span class="px-3.5 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs text-slate-400">Tailwind CSS v3</span>
+                <span class="px-3.5 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs text-slate-400">Google Gemini API</span>
+                <span class="px-3.5 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs text-slate-400">Model-Viewer 3D AR</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-slate-950 border-t border-slate-900 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>&copy; 2026 BIJAK ELEKTRONIK. Platform STEM RBT Tingkatan 2 Malaysia. Hak Cipta Terpelihara.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 p-3.5 rounded-full bg-gradient-to-r from-neonBlue to-neonPurple text-slate-900 hover:scale-110 shadow-lg opacity-0 pointer-events-none transition-all duration-300 z-50">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+
+    <!-- MODAL 1: Popup Maklumat Komponen Elektronik Interaktif (Berasaskan Pilihan Pelajar) -->
+    <div id="component-detail-modal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="glass-card max-w-2xl w-full rounded-3xl overflow-hidden border border-slate-800 flex flex-col shadow-glowingHotspot animate-fade-in-up">
+            
+            <!-- Modal Header -->
+            <div class="p-6 bg-slate-950 flex justify-between items-center border-b border-slate-800">
+                <div class="flex items-center space-x-3">
+                    <div id="modal-component-icon-container" class="w-10 h-10 rounded-xl bg-neonBlue/10 flex items-center justify-center text-neonBlue text-lg">
+                        <i id="modal-component-icon" class="fa-solid fa-circle-nodes"></i>
+                    </div>
+                    <div>
+                        <h3 id="modal-component-title" class="font-orbitron font-extrabold text-xl text-transparent bg-clip-text bg-gradient-to-r from-neonBlue to-neonPurple">Nama Komponen</h3>
+                        <p id="modal-component-english" class="text-[10px] text-slate-400 tracking-wider uppercase font-sans">English Name</p>
+                    </div>
+                </div>
+                <button onclick="closeComponentDetail()" class="text-slate-400 hover:text-white bg-slate-900 hover:bg-neonPurple/20 p-2.5 rounded-xl border border-slate-800 transition-all"><i class="fa-solid fa-times text-lg"></i></button>
+            </div>
+            
+            <!-- Modal Body Content -->
+            <div class="p-6 md:p-8 overflow-y-auto space-y-6 text-sm leading-relaxed max-h-[70vh]">
+                
+                <!-- Circuit Symbol Display Container -->
+                <div class="p-5 bg-slate-950/80 rounded-2xl border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="space-y-1 text-center sm:text-left">
+                        <span class="text-[11px] font-orbitron text-neonCyan uppercase tracking-widest block">Simbol Litar RBT</span>
+                        <p class="text-xs text-slate-400">Gunakan simbol ini semasa melukis lakaran gambar rajah litar skematik.</p>
+                    </div>
+                    <div id="modal-component-symbol" class="p-4 bg-slate-900 rounded-xl border border-slate-800 flex items-center justify-center min-w-[120px]">
+                        <!-- SVG Symbol injected via JS -->
+                    </div>
+                </div>
+
+                <!-- Definisi -->
+                <div class="space-y-2">
+                    <h4 class="font-bold text-slate-200 flex items-center"><i class="fa-solid fa-book-open text-neonPurple mr-2"></i> DEFINISI</h4>
+                    <p id="modal-component-definition" class="text-slate-300 bg-slate-900/20 p-4 rounded-xl border border-slate-850"></p>
+                </div>
+
+                <!-- Fungsi -->
+                <div class="space-y-2">
+                    <h4 class="font-bold text-slate-200 flex items-center"><i class="fa-solid fa-bolt-lightning text-neonBlue mr-2"></i> FUNGSI UTAMA</h4>
+                    <p id="modal-component-function" class="text-slate-300 bg-slate-900/20 p-4 rounded-xl border border-slate-850"></p>
+                </div>
+
+                <!-- Kegunaan -->
+                <div class="space-y-2">
+                    <h4 class="font-bold text-slate-200 flex items-center"><i class="fa-solid fa-circle-check text-emerald-400 mr-2"></i> CONTOH KEGUNAAN DALAM LITAR</h4>
+                    <div id="modal-component-uses" class="text-slate-300 space-y-2 p-1">
+                        <!-- List items injected via JS -->
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Modal Action Footer -->
+            <div class="p-5 bg-slate-950 border-t border-slate-800 flex flex-col sm:flex-row gap-3">
+                <button id="modal-ask-ai-btn" class="flex-1 py-3 px-4 rounded-xl bg-gradient-to-r from-neonBlue to-neonPurple text-slate-900 font-extrabold hover:shadow-neonBlue transition-all flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-robot"></i>
+                    <span>Tanya Cikgu AI Tentang Komponen Ini!</span>
+                </button>
+                <button onclick="closeComponentDetail()" class="py-3 px-6 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:bg-slate-800 transition-all text-xs font-semibold">
+                    Tutup
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MODAL FULLSCREEN: Infografik Komponen Elektronik Asas -->
+    <div id="infographic-modal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-md hidden items-center justify-center p-4 transition-all duration-300">
+        <!-- Close Button -->
+        <button onclick="closeInfographicModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white bg-slate-900/60 p-3.5 rounded-full hover:bg-neonPurple/20 hover:text-neonPurple border border-slate-800/80 hover:border-neonPurple/40 transition-all z-50">
+            <i class="fa-solid fa-times text-2xl"></i>
+        </button>
+        <!-- Info Toast / Control -->
+        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex items-center space-x-4 bg-slate-900/85 border border-slate-800 px-6 py-3 rounded-2xl backdrop-blur-md z-50 text-xs text-slate-300 shadow-xl">
+            <span class="flex items-center"><i class="fa-solid fa-circle-info mr-2 text-neonCyan animate-pulse"></i> Klik imej untuk zoom masuk / keluar</span>
+            <span class="text-slate-600">|</span>
+            <button onclick="resetZoom()" class="hover:text-neonBlue text-neonCyan transition-colors flex items-center"><i class="fa-solid fa-arrows-to-eye mr-1.5"></i> Tetap Semula</button>
+        </div>
+        <!-- Scrollable Image Container -->
+        <div class="w-full h-full flex items-center justify-center overflow-auto p-4 md:p-8">
+            <img id="modal-infographic-img" src="ChatGPT Image Jun 10, 2026, 12_58_00 AM.png" alt="Infografik Komponen Elektronik Asas Fullscreen" class="max-w-full max-h-full object-contain rounded-xl shadow-2xl transition-transform duration-300 ease-out cursor-zoom-in" onclick="toggleZoom(event)">
+        </div>
+    </div>
+
+
+    <!-- MODAL 2: Jadual Perbandingan Mikropengawal vs Mikroprosesor -->
+    <div id="perbezaan-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="glass-card max-w-4xl w-full rounded-2xl overflow-hidden border border-slate-800 flex flex-col max-h-[85vh]">
+            <div class="p-6 bg-slate-950 flex justify-between items-center border-b border-slate-800">
+                <h3 class="font-orbitron font-bold text-lg text-neonBlue"><i class="fa-solid fa-scale-balanced mr-2"></i> Perbandingan MCU & MPU</h3>
+                <button onclick="closeModal('perbezaan-modal')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-times text-xl"></i></button>
+            </div>
+            <div class="p-6 overflow-y-auto">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm border-collapse">
+                        <thead>
+                            <tr class="border-b border-slate-800 text-neonCyan font-orbitron">
+                                <th class="p-4">Aspek</th>
+                                <th class="p-4">Mikropengawal (MCU)</th>
+                                <th class="p-4">Mikroprosesor (MPU)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800 text-slate-300">
+                            <tr>
+                                <td class="p-4 font-semibold text-white">Struktur</td>
+                                <td class="p-4">Mengandungi CPU, RAM, ROM, dan I/O port dalam satu cip bersepadu tunggal.</td>
+                                <td class="p-4">Hanya mengandungi CPU. RAM, ROM dan pemacu luaran disambung secara berasingan.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-semibold text-white">Penggunaan</td>
+                                <td class="p-4">Bagi melakukan tugasan khusus (Dedicated task) seperti kawalan perkakasan.</td>
+                                <td class="p-4">Bagi memproses sistem pengkomputeran pelbagai tugasan yang kompleks.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-semibold text-white">Kos</td>
+                                <td class="p-4">Jauh lebih murah kerana berkeupayaan rendah dan berstruktur kompak.</td>
+                                <td class="p-4">Lebih mahal disebabkan kuasa pemprosesan tinggi dan komponen sokongan luar.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-semibold text-white">Kuasa</td>
+                                <td class="p-4">Penggunaan kuasa yang sangat rendah dan cekap tenaga.</td>
+                                <td class="p-4">Menggunakan tenaga elektrik yang lebih tinggi dan menjana lebih haba.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-semibold text-white">Aplikasi</td>
+                                <td class="p-4">Alat kawalan jauh, mesin basuh pintar, Arduino, sistem automasi rumah.</td>
+                                <td class="p-4">Komputer peribadi, komputer riba, telefon pintar mewah, konsol permainan video.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MODAL 3: Aplikasi Elektronik Dalam Kehidupan -->
+    <div id="aplikasi-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="glass-card max-w-4xl w-full rounded-2xl overflow-hidden border border-slate-800 flex flex-col max-h-[85vh]">
+            <div class="p-6 bg-slate-950 flex justify-between items-center border-b border-slate-800">
+                <h3 class="font-orbitron font-bold text-lg text-neonBlue"><i class="fa-solid fa-display mr-2"></i> Aplikasi Elektronik Kehidupan Seharian</h3>
+                <button onclick="closeModal('aplikasi-modal')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-times text-xl"></i></button>
+            </div>
+            <div class="p-6 overflow-y-auto space-y-6">
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- Smart Home -->
+                    <div class="p-5 rounded-2xl bg-slate-900/50 border border-slate-800 text-center space-y-3">
+                        <div class="w-12 h-12 rounded-full bg-neonBlue/10 flex items-center justify-center text-neonBlue mx-auto">
+                            <i class="fa-solid fa-house-laptop text-xl"></i>
+                        </div>
+                        <h4 class="font-orbitron font-bold text-sm text-white">Rumah Pintar</h4>
+                        <p class="text-xs text-slate-400">Sistem kawalan lampu automatik, termostat pemanas pintar, dan pembantu suara rumah yang dikawal mikropengawal pintar.</p>
+                    </div>
+
+                    <!-- Keselamatan -->
+                    <div class="p-5 rounded-2xl bg-slate-900/50 border border-slate-800 text-center space-y-3">
+                        <div class="w-12 h-12 rounded-full bg-neonPurple/10 flex items-center justify-center text-neonPurple mx-auto">
+                            <i class="fa-solid fa-shield-halved text-xl"></i>
+                        </div>
+                        <h4 class="font-orbitron font-bold text-sm text-white">Sistem Keselamatan</h4>
+                        <p class="text-xs text-slate-400">Pengesan penceroboh berasaskan PIR sensor, kunci pintu pintar menggunakan pengimbas cap jari biometric.</p>
+                    </div>
+
+                    <!-- Robotik -->
+                    <div class="p-5 rounded-2xl bg-slate-900/50 border border-slate-800 text-center space-y-3">
+                        <div class="w-12 h-12 rounded-full bg-neonBlue/10 flex items-center justify-center text-neonBlue mx-auto">
+                            <i class="fa-solid fa-robot text-xl"></i>
+                        </div>
+                        <h4 class="font-orbitron font-bold text-sm text-white">Robotik & Automasi</h4>
+                        <p class="text-xs text-slate-400">Lengan robotik industri, kenderaan tanpa pemandu (AGV), robot pengumpul sampah, dan robot pembersih vakum automatik.</p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // --- JALUR DATA DAN LOGIK CHATBOT AI GEMINI ---
+        const apiKey = ""; // Disediakan secara dinamik oleh persekitaran runtime
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+
+        const chatbotSystemPrompt = "Anda ialah AI Cikgu Elektronik yang membantu pelajar Tingkatan 2 memahami Reka Bentuk Elektronik berdasarkan DSKP dan Buku Teks RBT Tingkatan 2 Malaysia. Sila terangkan dalam bahasa Melayu yang mudah difahami, bersahabat, kreatif, dan gunakan elemen visual teks seperti senarai bullet.";
+
+        // Mengendalikan penghantaran soalan chatbot
+        document.getElementById('chat-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const inputEl = document.getElementById('chat-input');
+            const userText = inputEl.value.trim();
+            if(!userText) return;
+
+            appendChatMessage('user', userText);
+            inputEl.value = '';
+
+            // Hantar ke Gemini API
+            await queryCikguAI(userText);
+        });
+
+        // Hantar soalan apabila cip cadangan ditekan
+        function sendSuggestedQuestion(question) {
+            appendChatMessage('user', question);
+            queryCikguAI(question);
+        }
+
+        // Paparkan mesej ke dalam skrin chat
+        function appendChatMessage(sender, text) {
+            const chatMessages = document.getElementById('chat-messages');
+            const messageWrapper = document.createElement('div');
+            messageWrapper.className = `flex items-start space-x-3 ${sender === 'user' ? 'justify-end' : ''}`;
+
+            if(sender === 'user') {
+                messageWrapper.innerHTML = `
+                    <div class="p-3.5 rounded-2xl rounded-tr-none bg-gradient-to-r from-neonBlue/20 to-neonPurple/20 border border-neonBlue/30 text-slate-100 max-w-[80%] leading-relaxed">
+                        ${escapeHTML(text)}
+                    </div>
+                    <div class="w-8 h-8 rounded-full bg-neonBlue flex items-center justify-center text-xs text-slate-900 font-bold shrink-0">Saya</div>
+                `;
+            } else {
+                messageWrapper.innerHTML = `
+                    <div class="w-8 h-8 rounded-full bg-neonPurple flex items-center justify-center text-xs text-slate-900 font-bold shrink-0">AI</div>
+                    <div class="p-3.5 rounded-2xl rounded-tl-none bg-slate-800 text-slate-100 max-w-[80%] leading-relaxed">
+                        ${text}
+                    </div>
+                `;
+            }
+            chatMessages.appendChild(messageWrapper);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Panggilan API Gemini dengan Exponential Backoff (Maksimum 5 Cubaan)
+        async function queryCikguAI(userQuery) {
+            // Paparkan petunjuk "Sedang menaip..."
+            const chatMessages = document.getElementById('chat-messages');
+            const typingIndicator = document.createElement('div');
+            typingIndicator.id = 'typing-indicator';
+            typingIndicator.className = 'flex items-start space-x-3';
+            typingIndicator.innerHTML = `
+                <div class="w-8 h-8 rounded-full bg-neonPurple flex items-center justify-center text-xs text-slate-900 font-bold shrink-0">AI</div>
+                <div class="p-3.5 rounded-2xl rounded-tl-none bg-slate-800 text-slate-100 max-w-[80%] flex items-center space-x-1.5">
+                    <span class="w-2 h-2 bg-neonBlue rounded-full animate-bounce" style="animation-delay: 0.1s"></span>
+                    <span class="w-2 h-2 bg-neonBlue rounded-full animate-bounce" style="animation-delay: 0.2s"></span>
+                    <span class="w-2 h-2 bg-neonBlue rounded-full animate-bounce" style="animation-delay: 0.3s"></span>
+                </div>
+            `;
+            chatMessages.appendChild(typingIndicator);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            let attempt = 0;
+            const maxAttempts = 5;
+            let success = false;
+            let responseText = "";
+
+            while(attempt < maxAttempts && !success) {
+                try {
+                    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            contents: [{ parts: [{ text: userQuery }] }],
+                            systemInstruction: { parts: [{ text: chatbotSystemPrompt }] }
+                        })
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();
+                        responseText = result.candidates?.[0]?.content?.parts?.[0]?.text || "Maaf, saya tidak dapat memproses jawapan pada masa ini.";
+                        success = true;
+                    } else {
+                        throw new Error(`Ralat API: Status ${response.status}`);
+                    }
+                } catch (error) {
+                    attempt++;
+                    if(attempt >= maxAttempts) {
+                        responseText = "Sistem sibuk seketika. Sila cuba menghantar semula soalan anda.";
+                    } else {
+                        // Exponential backoff: 1s, 2s, 4s, 8s
+                        const delay = Math.pow(2, attempt - 1) * 1000;
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                    }
+                }
+            }
+
+            // Buang penunjuk menaip
+            const indicator = document.getElementById('typing-indicator');
+            if(indicator) indicator.remove();
+
+            // Sediakan teks berformat markdown ringkas (Gantikan perenggan & bullet)
+            const formattedResponse = formatBotResponse(responseText);
+            appendChatMessage('bot', formattedResponse);
+        }
+
+        // Memformat tindak balas teks AI
+        function formatBotResponse(text) {
+            // Format bullet points
+            let formatted = text.replace(/^\s*\*\s+(.*)$/gmi, '<li class="ml-4 list-disc text-slate-300">$1</li>');
+            // Format garisan baru
+            formatted = formatted.replace(/\n/g, '<br>');
+            // Format bold text
+            formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            return formatted;
+        }
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+            );
+        }
+
+
+        // --- DATA DICTIONARY KOMPONEN ELEKTRONIK ASAS ---
+        const componentData = {
+            perintang: {
+                title: "Perintang",
+                english: "Resistor",
+                icon: "fa-wave-square",
+                definition: "Komponen elektronik pasif yang berfungsi untuk menghalang atau mengehadkan kuantiti aliran arus elektrik dalam sesuatu litar lengkap.",
+                function: "Mengurangkan nilai arus elektrik dan membahagi voltan elektrik berdasarkan Hukum Ohm ($V = I \\times R$) bagi mengelakkan kerosakan pada peranti lain.",
+                uses: [
+                    "Melindungi komponen sensitif seperti LED daripada terbakar akibat menerima arus elektrik berlebihan.",
+                    "Digunakan sebagai pembahagi voltan dalam litar penderia cahaya (pembahagi voltan penderia LDR).",
+                    "Mengawal kelajuan putaran motor kecil dengan mengehadkan bekalan isyarat elektrik."
+                ],
+                symbolSvg: `<svg class="w-24 h-10 stroke-neonCyan fill-none" stroke-width="2.5" viewBox="0 0 100 40"><path d="M 0,20 L 20,20 L 28,5 L 40,35 L 52,5 L 64,35 L 72,20 L 100,20" /></svg>`
+            },
+            kapasitor: {
+                title: "Kapasitor",
+                english: "Capacitor",
+                icon: "fa-battery-half",
+                definition: "Komponen elektronik yang berfungsi untuk menyimpan cas elektrik buat sementara waktu sebelum melepaskannya semula apabila diperlukan oleh litar.",
+                function: "Berperanan sebagai penyimpan tenaga sementara, penapis isyarat, dan menstabilkan turun naik paras voltan bekalan elektrik.",
+                uses: [
+                    "Digunakan dalam unit bekalan kuasa (power supply) untuk menapis dan meratakan riak voltan (smoothing voltage).",
+                    "Menyimpan cas untuk fungsi denyutan kuasa tinggi sekelip mata, seperti lampu kilat (flash) kamera.",
+                    "Membantu menghalang arus terus (DC) sementara membenarkan arus ulang-alik (AC) mengalir dalam litar audio."
+                ],
+                symbolSvg: `<svg class="w-24 h-10 stroke-neonCyan fill-none" stroke-width="2.5" viewBox="0 0 100 40"><path d="M 0,20 L 42,20 M 58,20 L 100,20 M 42,5 L 42,35 M 58,5 L 58,35" /></svg>`
+            },
+            diod: {
+                title: "Diod",
+                english: "Diode",
+                icon: "fa-circle-arrow-right",
+                definition: "Komponen semikonduktor dengan dua terminal (Anod dan Katod) yang membenarkan arus elektrik mengalir dalam satu arah sahaja.",
+                function: "Bertindak sebagai injap satu hala untuk arus elektrik dan menghalang sepenuhnya aliran arus elektrik songsang (reverse current).",
+                uses: [
+                    "Bertindak sebagai penerus (rectifier) bagi menukarkan voltan arus ulang-alik (AC) kepada arus terus (DC).",
+                    "Melindungi litar mikropengawal daripada kerosakan sekiranya pengguna meletakkan bateri secara terbalik.",
+                    "Melindungi komponen pensuisan seperti transistor daripada lonjakan voltan songsang (back EMF) motor atau geganti."
+                ],
+                symbolSvg: `<svg class="w-24 h-10 stroke-neonCyan fill-none" stroke-width="2.5" viewBox="0 0 100 40"><path d="M 0,20 L 35,20 M 65,20 L 100,20 M 35,5 L 35,35 L 65,20 Z M 65,5 L 65,35" /></svg>`
+            },
+            led: {
+                title: "LED (Light Emitting Diode)",
+                english: "Light Emitting Diode",
+                icon: "fa-lightbulb",
+                definition: "Komponen diod semikonduktor khas yang memancarkan cahaya monokromatik apabila arus elektrik mengalir melepasinya dengan betul.",
+                function: "Menukarkan tenaga elektrik terus kepada tenaga cahaya dengan kecekapan yang tinggi dan menghasilkan haba yang sangat minima.",
+                uses: [
+                    "Digunakan sebagai lampu petunjuk (indicator light) untuk menandakan status litar (contohnya: status Kuasa ON/OFF).",
+                    "Paparan skrin papan iklan digital, segmen LED, dan papan pemuka kenderaan.",
+                    "Lampu suluh, lampu hiasan, dan sistem pencahayaan pintar penjimatan tenaga."
+                ],
+                symbolSvg: `<svg class="w-24 h-10 stroke-neonCyan fill-none" stroke-width="2.5" viewBox="0 0 100 40"><path d="M 0,20 L 35,20 M 65,20 L 100,20 M 35,10 L 35,30 L 65,20 Z M 65,10 L 65,30" /><path d="M 45,5 L 35,-5 M 40,-5 L 35,-5 L 35,0" stroke-linecap="round" stroke-linejoin="round" /><path d="M 55,5 L 45,-5 M 50,-5 L 45,-5 L 45,0" stroke-linecap="round" stroke-linejoin="round" /></svg>`
+            },
+            suis: {
+                title: "Suis",
+                english: "Switch",
+                icon: "fa-toggle-on",
+                definition: "Peranti mekanikal yang digunakan untuk menyambung atau memutuskan aliran arus elektrik di dalam litar secara terkawal.",
+                function: "Membuka litar (menghentikan aliran elektrik / OFF) atau menutup litar (membenarkan aliran elektrik diteruskan / ON).",
+                uses: [
+                    "Sebagai punca kawalan kuasa manual utama pada hampir semua perkakas elektronik rumah.",
+                    "Digunakan sebagai komponen input luaran untuk menghantar isyarat (HIGH/LOW) ke pin mikropengawal.",
+                    "Suis keselamatan auto-mati (limit switch) yang dipasang pada pintu peti sejuk dan mesin pengeluar industri."
+                ],
+                symbolSvg: `<svg class="w-24 h-10 stroke-neonCyan fill-none" stroke-width="2.5" viewBox="0 0 100 40"><circle cx="25" cy="20" r="3" class="fill-none" /><circle cx="75" cy="20" r="3" class="fill-none" /><path d="M 0,20 L 22,20 M 78,20 L 100,20 M 25,17 L 65,0" /></svg>`
+            },
+            buzzer: {
+                title: "Buzzer",
+                english: "Piezoelectric Buzzer",
+                icon: "fa-volume-high",
+                definition: "Komponen transduser audio yang menukarkan isyarat elektrik (gelombang ayunan) kepada gelombang bunyi yang boleh didengari.",
+                function: "Bergetar pada frekuensi tertentu untuk menghasilkan isyarat bunyi bip (audio alarm atau notification tones) bagi menarik perhatian pengguna.",
+                uses: [
+                    "Dipasang pada perkakas seperti ketuhar gelombang mikro (microwave) untuk berbunyi bip selepas makanan siap dipanaskan.",
+                    "Digunakan dalam sistem penggera kebakaran (smoke detector) dan penggera penceroboh rumah.",
+                    "Sebagai bunyi pemberitahuan ralat pada komputer riba atau sistem permainan retro."
+                ],
+                symbolSvg: `<svg class="w-24 h-10 stroke-neonCyan fill-none" stroke-width="2.5" viewBox="0 0 100 40"><path d="M 0,20 L 30,20 M 70,20 L 100,20 M 30,10 L 30,30 L 50,30 L 70,35 L 70,5 L 50,10 Z" /></svg>`
+            },
+            breadboard: {
+                title: "Breadboard",
+                english: "Protoboard / Solderless Breadboard",
+                icon: "fa-table-cells",
+                definition: "Papan plastik yang dipenuhi dengan lubang sambungan berkonduktor di bawahnya, membolehkan komponen elektronik dihubungkan tanpa pematerian.",
+                function: "Menyediakan tapak sambungan fizikal dan elektrikal yang fleksibel untuk penyambungan sementara kaki komponen dan wayar pelompat (jumper wires).",
+                uses: [
+                    "Digunakan oleh pelajar dan jurutera untuk menguji idea serta membina prototip litar RBT sebelum pematerian kekal dilakukan.",
+                    "Sangat praktikal untuk menukar, mencabut, dan menggantikan komponen litar elektrik yang rosak dengan cepat.",
+                    "Menyediakan rel kuasa khusus (positif dan negatif) untuk pengagihan kuasa elektrik yang kemas ke seluruh projek."
+                ],
+                symbolSvg: `<svg class="w-24 h-10 stroke-neonCyan fill-none" stroke-width="2" viewBox="0 0 100 40"><rect x="10" y="5" width="80" height="30" rx="3" /><line x1="20" y1="12" x2="80" y2="12" stroke-dasharray="2,2" /><line x1="20" y1="20" x2="80" y2="20" stroke-dasharray="2,2" /><line x1="20" y1="28" x2="80" y2="28" stroke-dasharray="2,2" /></svg>`
+            }
+        };
+
+        // Membuka Tetingkap Perincian Komponen (Modal Info)
+        function openComponentDetail(key) {
+            const data = componentData[key];
+            if(!data) return;
+
+            // Injek Kandungan ke Modal
+            document.getElementById('modal-component-title').innerText = data.title;
+            document.getElementById('modal-component-english').innerText = `Inggeris: ${data.english}`;
+            document.getElementById('modal-component-definition').innerText = data.definition;
+            document.getElementById('modal-component-function').innerText = data.function;
+            
+            // Tukar Ikon Utama
+            const iconContainer = document.getElementById('modal-component-icon-container');
+            const iconEl = document.getElementById('modal-component-icon');
+            iconEl.className = `fa-solid ${data.icon}`;
+
+            // Injek SVG Simbol
+            document.getElementById('modal-component-symbol').innerHTML = data.symbolSvg;
+
+            // Injek List Kegunaan
+            const usesContainer = document.getElementById('modal-component-uses');
+            usesContainer.innerHTML = '';
+            data.uses.forEach((use, index) => {
+                const li = document.createElement('div');
+                li.className = 'flex items-start space-x-2.5 p-2 bg-slate-900/40 rounded-xl border border-slate-800/40 text-xs text-slate-300';
+                li.innerHTML = `
+                    <span class="w-5 h-5 rounded-md bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0 font-bold text-[10px]">${index + 1}</span>
+                    <p class="leading-relaxed">${use}</p>
+                `;
+                usesContainer.appendChild(li);
+            });
+
+            // Set Action pada Butang "Tanya Cikgu AI"
+            const askAiBtn = document.getElementById('modal-ask-ai-btn');
+            askAiBtn.onclick = () => {
+                closeComponentDetail();
+                
+                // Salin teks ke Chatbot, dan tatal terus
+                const chatInput = document.getElementById('chat-input');
+                chatInput.value = `Terangkan lebih lanjut mengenai komponen "${data.title} (${data.english})" beserta contoh kegunaannya di dalam litar RBT Tingkatan 2.`;
+                
+                // Tatal ke bahagian chatbot
+                document.getElementById('chatbot').scrollIntoView({ behavior: 'smooth' });
+                
+                // Fokus input chat
+                setTimeout(() => chatInput.focus(), 800);
+            };
+
+            // Papar modal
+            const modal = document.getElementById('component-detail-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        // Tutup Modal Perincian Komponen
+        function closeComponentDetail() {
+            const modal = document.getElementById('component-detail-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+
+        // --- SISTEM PEMILIHAN MODEL 3D INTERAKTIF ---
+        function switch3DModel(modelType) {
+            const arduinoViewer = document.getElementById('arduino-viewer');
+            const componentsViewer = document.getElementById('components-viewer');
+            const btnArduino = document.getElementById('btn-model-arduino');
+            const btnComponents = document.getElementById('btn-model-components');
+
+            if(modelType === 'arduino') {
+                // Tunjuk Arduino
+                arduinoViewer.classList.remove('hidden');
+                componentsViewer.classList.add('hidden');
+                
+                // Kemaskini Butang UI
+                btnArduino.className = "w-full flex items-center justify-between p-4 rounded-xl bg-neonBlue/10 border border-neonBlue text-neonBlue font-semibold transition-all";
+                btnArduino.querySelector('.fa-circle-notch')?.classList.add('hidden');
+                btnArduino.querySelector('.fa-circle-check')?.classList.remove('hidden');
+
+                btnComponents.className = "w-full flex items-center justify-between p-4 rounded-xl bg-slate-900/50 border border-slate-800 hover:border-neonPurple text-slate-300 hover:text-slate-100 font-semibold transition-all";
+                btnComponents.querySelector('.fa-circle-notch')?.classList.add('hidden');
+                btnComponents.querySelector('.fa-circle-check')?.classList.add('hidden');
+
+                // Reset Spec Panel
+                document.getElementById('hotspot-detail-content').innerHTML = `
+                    <p class="text-sm text-slate-400">Pilih atau klik mana-mana titik biru (Hotspot) di atas model 3D untuk melihat perincian fungsinya secara mendalam di sini.</p>
+                `;
+            } else {
+                // Tunjuk Components
+                arduinoViewer.classList.add('hidden');
+                componentsViewer.classList.remove('hidden');
+
+                // Kemaskini Butang UI
+                btnComponents.className = "w-full flex items-center justify-between p-4 rounded-xl bg-neonPurple/10 border border-neonPurple text-neonPurple font-semibold transition-all";
+                btnComponents.querySelector('.fa-circle-notch')?.classList.add('hidden');
+                btnComponents.querySelector('.fa-circle-check')?.classList.remove('hidden');
+
+                btnArduino.className = "w-full flex items-center justify-between p-4 rounded-xl bg-slate-900/50 border border-slate-800 hover:border-neonBlue text-slate-300 hover:text-slate-100 font-semibold transition-all";
+                btnArduino.querySelector('.fa-circle-notch')?.classList.add('hidden');
+                btnArduino.querySelector('.fa-circle-check')?.classList.add('hidden');
+
+                // Reset Spec Panel
+                document.getElementById('hotspot-detail-content').innerHTML = `
+                    <p class="text-sm text-slate-400">Pilih atau klik mana-mana titik biru (Hotspot) di atas model 3D komponen untuk melihat fungsi khusus.</p>
+                `;
+            }
+        }
+
+        // Tunjukkan info hotspot dalam panel info sisi
+        function showHotspotInfo(title, description) {
+            const infoContainer = document.getElementById('hotspot-detail-content');
+            infoContainer.innerHTML = `
+                <div class="space-y-2 p-4 bg-slate-900/80 rounded-xl border border-neonBlue/30 animate-fade-in">
+                    <h4 class="font-orbitron font-extrabold text-neonCyan text-sm flex items-center">
+                        <i class="fa-solid fa-microchip mr-2 animate-pulse"></i> ${title}
+                    </h4>
+                    <p class="text-xs text-slate-300 leading-relaxed">${description}</p>
+                </div>
+            `;
+        }
+
+        // Toggle Auto Rotate pada model viewer
+        let isAutoRotate = true;
+        function toggle3DAutoRotate() {
+            isAutoRotate = !isAutoRotate;
+            const arduinoViewer = document.getElementById('arduino-viewer');
+            const componentsViewer = document.getElementById('components-viewer');
+            const rotateIcon = document.getElementById('rotate-icon');
+
+            if(isAutoRotate) {
+                arduinoViewer.setAttribute('auto-rotate', '');
+                componentsViewer.setAttribute('auto-rotate', '');
+                rotateIcon.classList.add('animate-spin-slow');
+            } else {
+                arduinoViewer.removeAttribute('auto-rotate');
+                componentsViewer.removeAttribute('auto-rotate');
+                rotateIcon.classList.remove('animate-spin-slow');
+            }
+        }
+
+        // Reset Camera Target & View
+        function reset3DCamera() {
+            const arduinoViewer = document.getElementById('arduino-viewer');
+            const componentsViewer = document.getElementById('components-viewer');
+            
+            arduinoViewer.cameraOrbit = "0deg 75deg 105%";
+            arduinoViewer.cameraTarget = "auto auto auto";
+            componentsViewer.cameraOrbit = "0deg 75deg 105%";
+            componentsViewer.cameraTarget = "auto auto auto";
+        }
+
+
+        // --- CARIAN NOTA DENGAN FUNGSI SEARCH BAR ---
+        const searchInput = document.getElementById('search-input');
+        const searchTargets = document.querySelectorAll('.search-target');
+        const noResults = document.getElementById('no-results');
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            let hasMatch = false;
+
+            searchTargets.forEach(card => {
+                const searchData = card.getAttribute('data-search').toLowerCase();
+                if(searchData.includes(query)) {
+                    card.classList.remove('hidden');
+                    hasMatch = true;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            if(hasMatch) {
+                noResults.classList.add('hidden');
+            } else {
+                noResults.classList.remove('hidden');
+            }
+        });
+
+
+        // --- LOGIK MODAL INFOGRAFIK FULLSCREEN ---
+        let isInfographicZoomed = false;
+
+        function openInfographicModal() {
+            const modal = document.getElementById('infographic-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.classList.add('overflow-hidden');
+            resetZoom();
+        }
+
+        function closeInfographicModal() {
+            const modal = document.getElementById('infographic-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        function toggleZoom(event) {
+            const img = document.getElementById('modal-infographic-img');
+            if (!isInfographicZoomed) {
+                img.style.transform = 'scale(1.8)';
+                img.classList.remove('cursor-zoom-in');
+                img.classList.add('cursor-zoom-out');
+                isInfographicZoomed = true;
+            } else {
+                img.style.transform = 'scale(1)';
+                img.classList.remove('cursor-zoom-out');
+                img.classList.add('cursor-zoom-in');
+                isInfographicZoomed = false;
+            }
+        }
+
+        function resetZoom() {
+            const img = document.getElementById('modal-infographic-img');
+            img.style.transform = 'scale(1)';
+            img.classList.remove('cursor-zoom-out');
+            img.classList.add('cursor-zoom-in');
+            isInfographicZoomed = false;
+        }
+
+
+        // --- INTERAKSI NAVIGASI & UTILITY (MOD TOGGLE, DRAWER, DLL) ---
+        
+        // Menukar Dark / Light Mode
+        const themeToggle = document.getElementById('dark-mode-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            document.body.classList.toggle('light');
+            if(document.body.classList.contains('light')) {
+                document.body.classList.remove('bg-darkBg', 'text-slate-100');
+                document.body.classList.add('bg-lightBg', 'text-slate-900');
+            } else {
+                document.body.classList.remove('bg-lightBg', 'text-slate-900');
+                document.body.classList.add('bg-darkBg', 'text-slate-100');
+            }
+        });
+
+        // Sticky Navbar & Progress Bar sewaktu Scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            const progressBar = document.getElementById('progress-bar');
+            const backToTop = document.getElementById('back-to-top');
+
+            // Sticky Navbar design
+            if(window.scrollY > 50) {
+                navbar.classList.add('bg-darkBg/90', 'backdrop-blur-md', 'shadow-lg', 'border-slate-800/80');
+            } else {
+                navbar.classList.remove('bg-darkBg/90', 'backdrop-blur-md', 'shadow-lg', 'border-slate-800/80');
+            }
+
+            // Progress bar calculation
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            progressBar.style.width = scrolled + "%";
+
+            // Back to top button visibility
+            if(window.scrollY > 400) {
+                backToTop.classList.remove('opacity-0', 'pointer-events-none');
+            } else {
+                backToTop.classList.add('opacity-0', 'pointer-events-none');
+            }
+        });
+
+        // Kembali ke atas
+        document.getElementById('back-to-top').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Mobile Menu Drawer Control
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileDrawer = document.getElementById('mobile-drawer');
+        const closeDrawerBtn = document.getElementById('close-drawer-btn');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileDrawer.classList.remove('translate-x-full');
+        });
+
+        closeDrawerBtn.addEventListener('click', () => {
+            mobileDrawer.classList.add('translate-x-full');
+        });
+
+        function toggleDrawer() {
+            mobileDrawer.classList.add('translate-x-full');
+        }
+
+        // Mengawal Paparan Modals
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
+            document.getElementById(modalId).classList.add('flex');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+            document.getElementById(modalId).classList.remove('flex');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        // Menutup modal sekiranya pengguna klik di luar modal card
+        window.addEventListener('click', (e) => {
+            const modals = ['perbezaan-modal', 'aplikasi-modal', 'infographic-modal', 'component-detail-modal'];
+            modals.forEach(id => {
+                const modal = document.getElementById(id);
+                if(e.target === modal) {
+                    if (id === 'infographic-modal') {
+                        closeInfographicModal();
+                    } else if (id === 'component-detail-modal') {
+                        closeComponentDetail();
+                    } else {
+                        closeModal(id);
+                    }
+                }
+            });
+        });
+
+        // Nyahaktif Loading Screen sejurus halaman siap dimuatkan
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loading-screen');
+            loader.classList.add('opacity-0');
+            setTimeout(() => {
+                loader.classList.add('hidden');
+            }, 700);
+        });
+
+    </script>
+</body>
+</html>
