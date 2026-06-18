@@ -530,63 +530,34 @@
 
     <!-- 4. AI CHATBOT SECTION -->
     <section id="chatbot" class="py-24 bg-gradient-to-b from-darkBg to-slate-900 border-t border-slate-800/50">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center space-y-4 mb-12">
-                <h2 class="font-orbitron text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-neonBlue to-neonPurple">AI Cikgu Elektronik</h2>
-                <p class="text-slate-400">Tanya sebarang soalan mengenai Reka Bentuk Elektronik RBT Tingkatan 2. Cikgu AI sedia membantu!</p>
-            </div>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
-            <!-- Chatbot Container Interface -->
-            <div class="glass-card rounded-2xl overflow-hidden shadow-2xl flex flex-col h-[550px] border border-slate-800">
-                <!-- Chatbot Header -->
-                <div class="px-6 py-4 bg-slate-950 flex items-center justify-between border-b border-slate-800">
-                    <div class="flex items-center space-x-3">
-                        <div class="relative">
-                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-neonBlue to-neonPurple flex items-center justify-center">
-                                <i class="fa-solid fa-user-tie text-slate-900 text-lg"></i>
-                            </div>
-                            <span class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-slate-950 rounded-full animate-pulse"></span>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-sm">Cikgu AI Elektronik</h4>
-                            <span class="text-[10px] text-neonCyan tracking-widest uppercase font-orbitron">Pakar RBT T2</span>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <span class="px-2 py-1 text-[10px] bg-neonBlue/10 text-neonBlue rounded border border-neonBlue/20 font-orbitron">GEMINI FLASH</span>
-                    </div>
-                </div>
+        <h2 class="font-orbitron text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-neonBlue to-neonPurple">
+            🤖 AI Cikgu Elektronik
+        </h2>
 
-                <!-- Chat Messages Body -->
-                <div id="chat-messages" class="flex-1 p-6 overflow-y-auto space-y-4 text-sm scroll-smooth">
-                    <!-- Bot message -->
-                    <div class="flex items-start space-x-3">
-                        <div class="w-8 h-8 rounded-full bg-neonPurple flex items-center justify-center text-xs text-slate-900 font-bold shrink-0">AI</div>
-                        <div class="p-3.5 rounded-2xl rounded-tl-none bg-slate-800 text-slate-100 max-w-[80%] leading-relaxed">
-                            Assalamualaikum dan selamat datang! Saya <strong>AI Cikgu Elektronik</strong>. 
-                            Saya boleh membantu anda memahami sukatan pelajaran Reka Bentuk Elektronik RBT Tingkatan 2. 
-                            Tanya saya apa-apa sahaja, atau klik salah satu soalan lazim di bawah!
-                        </div>
-                    </div>
-                </div>
+        <p class="mt-6 text-slate-300 text-lg">
+            Klik ikon chatbot di penjuru kanan bawah untuk bertanya soalan berkaitan
+            Reka Bentuk Elektronik RBT Tingkatan 2.
+        </p>
 
-                <!-- Suggestion Chips -->
-                <div class="px-6 py-3 bg-slate-950/50 flex flex-wrap gap-2 border-t border-slate-800/40">
-                    <button onclick="sendSuggestedQuestion('Apakah mikropengawal?')" class="px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs text-slate-300 hover:border-neonBlue hover:text-neonBlue transition-all">Apakah mikropengawal?</button>
-                    <button onclick="sendSuggestedQuestion('Apakah fungsi LED?')" class="px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs text-slate-300 hover:border-neonBlue hover:text-neonBlue transition-all">Apakah fungsi LED?</button>
-                    <button onclick="sendSuggestedQuestion('Apakah perbezaan mikropengawal & mikroprosesor?')" class="px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs text-slate-300 hover:border-neonBlue hover:text-neonBlue transition-all">Apakah perbezaan MCU & MPU?</button>
-                </div>
+        <div class="mt-8 glass-card rounded-2xl p-8 border border-neonBlue/20">
+            <h3 class="font-orbitron text-xl text-neonBlue mb-4">
+                Apa yang boleh ditanya?
+            </h3>
 
-                <!-- Chat Input Controls -->
-                <form id="chat-form" class="p-4 bg-slate-950 flex items-center space-x-3 border-t border-slate-800">
-                    <input id="chat-input" type="text" placeholder="Tulis soalan anda di sini..." class="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-neonPurple transition-all text-sm" required>
-                    <button type="submit" class="p-3 rounded-xl bg-gradient-to-r from-neonBlue to-neonPurple text-slate-900 hover:scale-105 transition-all">
-                        <i class="fa-solid fa-paper-plane"></i>
-                    </button>
-                </form>
+            <div class="grid md:grid-cols-2 gap-4 text-left text-slate-300">
+                <div>💡 Mikropengawal (Microcontroller)</div>
+                <div>💻 Mikroprosesor (Microprocessor)</div>
+                <div>🔧 Komponen Elektronik</div>
+                <div>📡 Sensor</div>
+                <div>⚡ Input, Proses dan Output</div>
+                <div>🤖 Arduino & BBC Micro:bit</div>
             </div>
         </div>
-    </section>
+
+    </div>
+</section>
 
     <!-- 5. BAHAGIAN AR DAN 3D -->
     <section id="ar-3d" class="py-24 border-t border-slate-800/50">
